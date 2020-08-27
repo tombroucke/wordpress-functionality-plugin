@@ -31,7 +31,7 @@ class ACF_Json {
 		if ( ! is_dir( $this->path ) ) {
 			mkdir( $this->path );
 		}
-		return $path;
+		return $this->path;
 
 	}
 
