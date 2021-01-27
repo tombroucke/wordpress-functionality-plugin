@@ -1,11 +1,6 @@
 <?php //phpcs:ignore
 namespace ProjectnameNamespace\Functionality\Core;
 
-use ProjectnameNamespace\Functionality\Hooks\Admin;
-use ProjectnameNamespace\Functionality\Hooks\Frontend;
-
-use ProjectnameNamespace\Functionality\Models\Story;
-
 /**
  * Our main plugin class
  */
