@@ -4,7 +4,7 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * Add ACF options pages
  */
-class Options_Page {
+class OptionsPage {
 
 	/**
 	 * Create pages

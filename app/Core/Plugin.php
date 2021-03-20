@@ -61,20 +61,20 @@ class Plugin {
 	 */
 	private function define_hooks() {
 
-		$acf_json = new ACF_Json();
+		$acf_json = new AcfJson();
 		$this->loader->add_filter( 'acf/settings/save_json', $acf_json, 'save_json' );
 		$this->loader->add_filter( 'acf/settings/load_json', $acf_json, 'load_json' );
 
-		$cpts = new Custom_Post_Types();
+		$cpts = new CustomPostTypes();
 		$this->loader->add_action( 'init', $cpts, 'add_stories' );
 
-		$options = new Options_Page();
+		$options = new OptionsPage();
 		$this->loader->add_action( 'acf/init', $options, 'add_options_page' );
 
 		$shortcodes = new Shortcodes();
 		add_shortcode( 'foobar', array( $shortcodes, 'foobar_func' ) );
 
-		$social_media = new Social_Media_Settings();
+		$social_media = new SocialMedia();
 		$this->loader->add_action( 'admin_menu', $social_media, 'add_settings_page' );
 		$this->loader->add_action( 'admin_init', $social_media, 'settings_page_content' );
 

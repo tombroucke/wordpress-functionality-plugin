@@ -151,4 +151,51 @@ abstract class Post_Type {
 	public function __set( $name, $value ) {
 		$this->$name = $value;
 	}
+
+	/**
+	 * Find posts of post type
+	 *
+	 * @param array   $args Extra argument to find posts (wp_query args).
+	 * @param integer $limit The number of posts to find.
+	 * @param integer $paged Page number if paged.
+	 * @return void
+	 */
+	public static function find( $args = array(), $limit = -1, $paged = 0 ) {
+		$class    = get_called_class();
+		$defaults = array(
+			'post_type'      => static::post_type(),
+			'posts_per_page' => $limit,
+			'paged'          => $paged,
+		);
+		$args     = wp_parse_args( $args, $defaults );
+
+		// Shouldn't be overridden.
+		$args['fields'] = 'ids';
+
+		$post_ids = get_posts( $args );
+		return array_map(
+			function( $post_id ) use ( $class ) {
+				return new $class( $post_id );
+			},
+			$post_ids
+		);
+
+	}
+
+	/**
+	 * Find one post
+	 *
+	 * @param array   $args Extra argument to find posts (wp_query args).
+	 * @return void
+	 */
+	public static function find_one( $args = array() ) {
+
+		$args['posts_per_page'] = 1;
+		$result                 = self::find( $args );
+		if ( empty( $result ) ) {
+			return false;
+		}
+		return $result[0];
+
+	}
 }

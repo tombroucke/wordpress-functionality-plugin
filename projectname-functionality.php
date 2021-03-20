@@ -4,7 +4,7 @@
  * Description: Functionality plugin for Projectname
  * Author: Tom Broucke
  * Author URI: https://tombroucke.be
- * Version: 1.0.0
+ * Version: 1.0.1
  * License: GPL2
  * Text Domain: projectname-textdomain
  * Domain Path: languages
@@ -15,7 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-require 'vendor/autoload.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require 'vendor/autoload.php';
+}
 
 /**
  * Begins execution of the plugin.

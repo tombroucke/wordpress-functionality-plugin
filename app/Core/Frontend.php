@@ -1,6 +1,9 @@
 <?php //phpcs:ignore
-namespace ProjectnameNamespace\Functionality\Hooks;
+namespace ProjectnameNamespace\Functionality\Core;
 
+/**
+ * Frontend hooks
+ */
 class Frontend {
 
 }

@@ -4,7 +4,7 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * Store ACF fields in json file
  */
-class ACF_Json {
+class AcfJson {
 
 	/**
 	 * The path to our json directory

@@ -4,7 +4,7 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * Social media settings
  */
-class Social_Media_Settings {
+class SocialMedia {
 
 	/**
 	 * Holds the values to be used in the fields callbacks
