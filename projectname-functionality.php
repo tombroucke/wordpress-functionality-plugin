@@ -4,7 +4,7 @@
  * Description: Functionality plugin for Projectname
  * Author: Tom Broucke
  * Author URI: https://tombroucke.be
- * Version: 1.0.1
+ * Version: 1.0.2
  * License: GPL2
  * Text Domain: projectname-textdomain
  * Domain Path: languages
