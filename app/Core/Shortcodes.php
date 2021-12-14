@@ -4,26 +4,25 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * WordPress shortcodes
  */
-class Shortcodes {
+class Shortcodes
+{
 
-	/**
-	 * Shortcode callback
-	 *
-	 * @param  array $atts The shortcut attributes.
-	 * @return string
-	 */
-	public function foobar_func( $atts ) {
+    /**
+     * Shortcode callback
+     *
+     * @param  array $atts The shortcut attributes.
+     * @return string
+     */
+    public function foobarFunc($atts)
+    {
+        $a = shortcode_atts(
+            array(
+                'foo' => 'something',
+                'bar' => 'something else',
+            ),
+            $atts
+        );
 
-		$a = shortcode_atts(
-			array(
-				'foo' => 'something',
-				'bar' => 'something else',
-			),
-			$atts
-		);
-
-		return "foo = {$a['foo']}";
-
-	}
-
+        return "foo = {$a['foo']}";
+    }
 }

@@ -4,100 +4,117 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * Our main plugin class
  */
-class Plugin {
+class Plugin
+{
 
-	/**
-	 * Action and filter loader
-	 *
-	 * @var Loader
-	 */
-	protected $loader;
+    /**
+     * Action and filter loader
+     *
+     * @var Loader
+     */
+    protected $loader;
 
-	/**
-	 * The plugin instance
-	 *
-	 * @var null|Plugin
-	 */
-	private static $_instance = null;
+    /**
+     * The plugin instance
+     *
+     * @var null|Plugin
+     */
+    private static $instance = null;
 
-	/**
-	 * Get plugin instance
-	 *
-	 * @return Plugin
-	 */
-	public static function instance() {
-		if ( ! isset( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
+    /**
+     * Get plugin instance
+     *
+     * @return Plugin
+     */
+    public static function instance()
+    {
+        if (! isset(self::$instance)) {
+            self::$instance = new self();
+        }
 
-		return self::$_instance;
-	}
+        return self::$instance;
+    }
 
-	/**
-	 * Initialize plugin
-	 */
-	public function __construct() {
+    /**
+     * Initialize plugin
+     */
+    public function __construct()
+    {
+        $this->loader = new Loader();
+        $this->setLocale();
 
-		$this->loader = new Loader();
-		$this->set_locale();
-		$this->define_hooks();
+        $this->addSocialMedia();
+        $this->addOptionsPage();
+        $this->addShortcodes();
+        $this->definePostTypeHooks();
+        
+        $this->defineAdminHooks();
+        $this->defineFrontendHooks();
+    }
 
-	}
+    /**
+     * Set locale
+     */
+    private function setLocale()
+    {
+        $plugin_i18n = new i18n();
+        $plugin_i18n->loadPluginTextdomain();
+    }
 
-	/**
-	 * Set local
-	 */
-	private function set_locale() {
+    private function addSocialMedia()
+    {
+        $socialMedia = new SocialMedia();
+        $this->loader->addAction('admin_menu', $socialMedia, 'addSettingsPage');
+        $this->loader->addAction('admin_init', $socialMedia, 'settingsPageContent');
+    }
 
-		$plugin_i18n = new i18n();
-		$plugin_i18n->load_plugin_textdomain();
+    private function addShortcodes()
+    {
+        $shortcodes = new Shortcodes();
+        add_shortcode('foobar', [$shortcodes, 'foobarFunc']);
+    }
 
-	}
+    private function addOptionsPage()
+    {
+        $options = new OptionsPage();
+        $this->loader->addAction('acf/init', $options, 'addOptionsPage');
+        $this->loader->addAction('acf/init', $options, 'addOptionsFields');
+    }
 
-	/**
-	 * Define hooks
-	 *
-	 * @return void
-	 */
-	private function define_hooks() {
+    private function definePostTypeHooks()
+    {
+        $cpts = new CustomPostTypes();
+        // $this->loader->addAction('init', $cpts, 'addStories');
+        // $this->loader->addAction('acf/init', $cpts, 'addStoryFields');
+    }
 
-		$acf_json = new AcfJson();
-		$this->loader->add_filter( 'acf/settings/save_json', $acf_json, 'save_json' );
-		$this->loader->add_filter( 'acf/settings/load_json', $acf_json, 'load_json' );
+    private function defineFrontendHooks()
+    {
+        $frontend = new Frontend();
+    }
 
-		$cpts = new CustomPostTypes();
-		$this->loader->add_action( 'init', $cpts, 'add_stories' );
+    private function defineAdminHooks()
+    {
+        $admin = new Admin();
+    }
 
-		$options = new OptionsPage();
-		$this->loader->add_action( 'acf/init', $options, 'add_options_page' );
+    /**
+     * Run actions and filters
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->loader->run();
+    }
 
-		$shortcodes = new Shortcodes();
-		add_shortcode( 'foobar', array( $shortcodes, 'foobar_func' ) );
-
-		$social_media = new SocialMedia();
-		$this->loader->add_action( 'admin_menu', $social_media, 'add_settings_page' );
-		$this->loader->add_action( 'admin_init', $social_media, 'settings_page_content' );
-
-		$admin = new Admin();
-		$public = new Frontend();
-	}
-
-	/**
-	 * Run actions and filters
-	 *
-	 * @return void
-	 */
-	public function run() {
-		$this->loader->run();
-	}
-
-	/**
-	 * Get loader
-	 *
-	 * @return Loader
-	 */
-	public function get_loader() {
-		return $this->loader;
-	}
-
+    /**
+     * Get loader
+     *
+     * @return Loader
+     */
+    public function getLoader()
+    {
+        return $this->loader;
+    }
 }

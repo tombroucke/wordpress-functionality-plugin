@@ -1,90 +1,99 @@
 <?php //phpcs:ignore
 namespace ProjectnameNamespace\Functionality\Core;
 
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
 /**
  * Create custom post types and taxonomies
  */
 class CustomPostTypes
 {
 
-    /**
-     * Register post type story
-     */
-    public function add_stories()
-    {
+    // /**
+    //  * Register post type story
+    //  */
+    // public function addStories()
+    // {
+    //     $postType = 'story';
+    //     $slug = 'stories';
+    //     $postSingularName = __('Story', 'projectname-textdomain');
+    //     $postPluralName = __('Stories', 'projectname-textdomain');
 
-        $post_type      = 'story';
-        $slug           = 'stories';
-        $singular_name  = __('Story', 'projectname-textdomain');
-        $plural_name    = __('Stories', 'projectname-textdomain');
+    //     register_extended_post_type(
+    //         $postType,
+    //         [
+    //             'show_in_feed' => true,
+    //             'show_in_rest' => true,
+    //             'labels' => $this->postTypeLabels($postSingularName, $postPluralName),
+    //             'dashboard_activity' => true,
+    //             'admin_cols' => [
+    //                 'story_featured_image' => [
+    //                     'title'          => __('Illustration', 'projectname-textdomain'),
+    //                     'featured_image' => 'thumbnail',
+    //                 ],
+    //                 'story_published' => [
+    //                     'title_icon'  => 'dashicons-calendar-alt',
+    //                     'meta_key'    => 'published_date',
+    //                     'date_format' => 'd/m/Y',
+    //                 ],
+    //                 'story_genre' => [
+    //                     'taxonomy' => 'genre',
+    //                 ],
+    //             ],
+    //             'admin_filters' => [
+    //                 'story_genre' => [
+    //                     'taxonomy' => 'genre',
+    //                 ],
+    //                 'story_rating' => [
+    //                     'meta_key' => 'star_rating',
+    //                 ],
+    //             ],
 
-        register_extended_post_type(
-            $post_type,
-            array(
-                'show_in_feed' => true,
-                'show_in_rest' => true,
-                'archive' => array(
-                    'nopaging' => true,
-                ),
-                'labels' => $this->post_type_labels($singular_name, $plural_name),
-                'dashboard_activity' => true,
-                'admin_cols' => array(
-                    'story_featured_image' => array(
-                        'title'          => __('Illustration', 'projectname-textdomain'),
-                        'featured_image' => 'thumbnail',
-                    ),
-                    'story_published' => array(
-                        'title_icon'  => 'dashicons-calendar-alt',
-                        'meta_key'    => 'published_date',
-                        'date_format' => 'd/m/Y',
-                    ),
-                    'story_genre' => array(
-                        'taxonomy' => 'genre',
-                    ),
-                ),
-                'admin_filters' => array(
-                    'story_genre' => array(
-                        'taxonomy' => 'genre',
-                    ),
-                    'story_rating' => array(
-                        'meta_key' => 'star_rating',
-                    ),
-                ),
+    //         ],
+    //         [
+    //             'singular' => $postSingularName,
+    //             'plural'   => $postPluralName,
+    //             'slug'     => $slug,
+    //         ]
+    //     );
 
-            ),
-            array(
-                'singular' => $singular_name,
-                'plural'   => $plural_name,
-                'slug'     => $slug,
-            )
-        );
+    //     $taxSlug = 'genre';
+    //     $taxonomySingularName = __('Genre', 'projectname-textdomain');
+    //     $taxonomyPluralName = __('Genres', 'projectname-textdomain');
 
-        $slug           = 'genre';
-        $singular_name  = __('Genre', 'projectname-textdomain');
-        $plural_name    = __('Genres', 'projectname-textdomain');
+    //     register_extended_taxonomy(
+    //         $taxSlug,
+    //         $postType,
+    //         [
+    //             'meta_box' => 'radio', // can be null, 'simple', 'radio', 'dropdown'
+    //             'exclusive' => false, // true means: just one can be selected; only for simple
+    //             'labels' => $this->taxonomyLabels($taxonomySingularName, $taxonomyPluralName),
+    //             'admin_cols' => [
+    //                 'updated' => [
+    //                     'title_cb'    => function () {
+    //                         return '<em>Last</em> Updated';
+    //                     },
+    //                     'meta_key'    => 'updated_date',
+    //                     'date_format' => 'd/m/Y',
+    //                 ],
+    //             ],
+    //         ],
+    //         [
+    //             'plural' => $taxonomyPluralName,
+    //         ]
+    //     );
+    // }
 
-        register_extended_taxonomy(
-            'genre',
-            $post_type,
-            array(
-                'meta_box' => 'radio',
-                'labels' => $this->taxonomy_labels($singular_name, $plural_name),
-                'admin_cols' => array(
-                    'updated' => array(
-                        'title_cb'    => function () {
-                            return '<em>Last</em> Updated';
-                        },
-                        'meta_key'    => 'updated_date',
-                        'date_format' => 'd/m/Y',
-                    ),
-                ),
-
-            ),
-            array(
-                'plural' => $plural_name,
-            )
-        );
-    }
+    // public function addStoryFields()
+    // {
+    //     $story = new FieldsBuilder('story');
+    //     $story
+    //         ->addText('author', [
+    //             'label' => __('Author', 'sage'),
+    //         ])
+    //         ->setLocation('post_type', '==', 'story');
+    //     acf_add_local_field_group($story->build());
+    // }
 
     /**
      * Translate post type labels
@@ -93,9 +102,9 @@ class CustomPostTypes
      * @param  string $plural_name   The plural name for the post type.
      * @return array
      */
-    private function post_type_labels($singular_name, $plural_name)
+    private function postTypeLabels($singular_name, $plural_name)
     {
-        return array(
+        return [
             'add_new'                  => __('Add New', 'projectname-textdomain'),
             /* translators: %s: singular post name */
             'add_new_item'             => sprintf(__('Add New %s', 'projectname-textdomain'), $singular_name),
@@ -141,7 +150,7 @@ class CustomPostTypes
             'item_scheduled'           => sprintf(__('%s scheduled.', 'projectname-textdomain'), $singular_name),
             /* translators: %s: singular post name */
             'item_updated'             => sprintf(__('%s updated.', 'projectname-textdomain'), $singular_name),
-        );
+        ];
     }
 
     /**
@@ -151,9 +160,9 @@ class CustomPostTypes
      * @param  string $plural_name   The plural name for the taxonomy.
      * @return array
      */
-    private function taxonomy_labels($singular_name, $plural_name)
+    private function taxonomyLabels($singular_name, $plural_name)
     {
-        return array(
+        return [
             /* translators: %s: plural taxonomy name */
             'search_items'               => sprintf(__('Search %s', 'projectname-textdomain'), $plural_name),
             /* translators: %s: plural taxonomy name */
@@ -195,6 +204,6 @@ class CustomPostTypes
             'no_item'                    => sprintf(__('No %s', 'projectname-textdomain'), strtolower($singular_name)),
             /* translators: %s: singular taxonomy name to lower */
             'filter_by'                  => sprintf(__('Filter by %s', 'projectname-textdomain'), strtolower($singular_name)),
-        );
+        ];
     }
 }

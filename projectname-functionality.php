@@ -4,19 +4,19 @@
  * Description: Functionality plugin for Projectname
  * Author: Tom Broucke
  * Author URI: https://tombroucke.be
- * Version: 1.0.2
+ * Version: 1.0.0
  * License: GPL2
  * Text Domain: projectname-textdomain
  * Domain Path: languages
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
-if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	require 'vendor/autoload.php';
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require 'vendor/autoload.php';
 }
 
 /**
@@ -29,9 +29,9 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * @since    1.0.0
  */
 add_action(
-	'plugins_loaded',
-	function() {
-		$plugin = ProjectnameNamespace\Functionality\Core\Plugin::instance();
-		$plugin->run();
-	}
+    'plugins_loaded',
+    function () {
+        $plugin = ProjectnameNamespace\Functionality\Core\Plugin::instance();
+        $plugin->run();
+    }
 );

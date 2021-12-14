@@ -4,6 +4,7 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * Admin hooks
  */
-class Admin {
+class Admin
+{
 
 }

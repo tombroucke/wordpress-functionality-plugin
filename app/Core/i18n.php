@@ -6,15 +6,13 @@ namespace ProjectnameNamespace\Functionality\Core;
  */
 class i18n { //phpcs:ignore
 
-	/**
-	 * Load must use plugin textdomain
-	 *
-	 * @return void
-	 */
-	public function load_plugin_textdomain() {
-
-		load_muplugin_textdomain( 'projectname-textdomain', dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
-
-	}
-
+    /**
+     * Load must use plugin textdomain
+     *
+     * @return void
+     */
+    public function loadPluginTextdomain()
+    {
+        load_muplugin_textdomain('projectname-textdomain', dirname(plugin_basename(__FILE__), 2) . '/languages/');
+    }
 }

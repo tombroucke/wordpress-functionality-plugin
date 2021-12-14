@@ -1,33 +1,49 @@
 <?php //phpcs:ignore
 namespace ProjectnameNamespace\Functionality\Core;
 
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
 /**
  * Add ACF options pages
  */
-class OptionsPage {
+class OptionsPage
+{
 
-	/**
-	 * Create pages
-	 */
-	public function add_options_page() {
-		
-		acf_add_options_page(
-			array(
-				'page_title'    => __( 'Projectname settings', 'projectname-textdomain' ),
-				'menu_title'    => __( 'Projectname settings', 'projectname-textdomain' ),
-				'menu_slug'     => 'projectname-settings',
-				'capability'    => 'edit_posts',
-				'redirect'      => false,
-			)
-		);
+    /**
+     * Create pages
+     */
+    public function addOptionsPage()
+    {
+        
+        acf_add_options_page(
+            array(
+                'page_title'    => __('Projectname settings', 'projectname-textdomain'),
+                'menu_title'    => __('Projectname settings', 'projectname-textdomain'),
+                'menu_slug'     => 'projectname-settings',
+                'capability'    => 'edit_posts',
+                'redirect'      => false,
+            )
+        );
 
-		acf_add_options_sub_page(
-			array(
-				'page_title'    => __( 'Projectname settings', 'projectname-textdomain' ),
-				'menu_title' => __( 'Projectname settings', 'projectname-textdomain' ),
-				'parent_slug'   => 'projectname-settings',
-			)
-		);
-	}
+        // acf_add_options_sub_page(
+        //  array(
+        //      'page_title'    => __( 'Projectname settings', 'projectname-textdomain' ),
+        //      'menu_title' => __( 'Projectname settings', 'projectname-textdomain' ),
+        //      'parent_slug'   => 'projectname-settings',
+        //  )
+        // );
+    }
 
+    /**
+     * Add options fields
+     *
+     * @return void
+     */
+    public function addOptionsFields() : void
+    {
+        $projectnameSettings = new FieldsBuilder('projectname-settings');
+        $projectnameSettings
+            ->setLocation('options_page', '==', 'projectname-settings');
+        acf_add_local_field_group($projectnameSettings->build());
+    }
 }

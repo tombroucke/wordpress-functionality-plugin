@@ -4,6 +4,7 @@ namespace ProjectnameNamespace\Functionality\Core;
 /**
  * Frontend hooks
  */
-class Frontend {
+class Frontend
+{
 
 }

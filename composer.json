@@ -7,7 +7,8 @@
         }
     ],
     "require": {
-        "johnbillion/extended-cpts": "^4.3"
+        "johnbillion/extended-cpts": "^4.3",
+        "stoutlogic/acf-builder": "^1.12"
     },
 	"autoload": {
 		"psr-4": {
