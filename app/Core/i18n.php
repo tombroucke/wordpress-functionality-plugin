@@ -13,6 +13,6 @@ class i18n { //phpcs:ignore
      */
     public function loadPluginTextdomain()
     {
-        load_muplugin_textdomain('projectname-textdomain', dirname(plugin_basename(__FILE__), 2) . '/languages/');
+        load_muplugin_textdomain('projectname-textdomain', dirname(plugin_basename(__FILE__), 3) . '/languages/');
     }
 }
