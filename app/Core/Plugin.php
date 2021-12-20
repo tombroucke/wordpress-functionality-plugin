@@ -72,7 +72,6 @@ class Plugin
     {
         $shortcodes = new Shortcodes();
         add_shortcode('foobar', [$shortcodes, 'foobarFunc']);
-        add_shortcode('email', [$shortcodes, 'obfuscateEmail']);
     }
 
     private function addOptionsPage()
