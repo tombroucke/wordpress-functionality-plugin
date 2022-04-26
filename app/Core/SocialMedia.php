@@ -22,7 +22,7 @@ class SocialMedia
         add_options_page(
             'Settings Admin',
             __('Social media', 'projectname-textdomain'),
-            'manage_options',
+			'edit_posts',
             'social-settings',
             [$this, 'createAdminPage']
         );
