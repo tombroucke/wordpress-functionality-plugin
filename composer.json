@@ -7,13 +7,24 @@
         }
     ],
     "require": {
+        "php": ">=8",
         "johnbillion/extended-cpts": "^4.3",
-        "stoutlogic/acf-builder": "^1.12"
+        "stoutlogic/acf-builder": "^1.12",
+        "tombroucke/wp-models": "^1.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5.4",
+        "roave/security-advisories": "dev-master"
     },
 	"autoload": {
 		"psr-4": {
 			"ProjectnameNamespace\\Functionality\\": "app/"
 		},
 		"files": ["app/functions.php"]
-	}
+	},
+    "scripts": {
+        "test" : [
+            "phpcs  --standard=PSR2 app"
+        ]
+    }
 }

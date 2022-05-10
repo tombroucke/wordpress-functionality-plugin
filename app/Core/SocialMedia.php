@@ -102,7 +102,7 @@ class SocialMedia
      */
     public function sanitizeUrls($input)
     {
-        return array_map (function ($url) {
+        return array_map(function ($url) {
             return esc_url($url);
         }, $input);
     }

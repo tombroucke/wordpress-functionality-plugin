@@ -1,13 +1,13 @@
 <?php //phpcs:ignore
 namespace ProjectnameNamespace\Functionality\Models;
 
-use ProjectnameNamespace\Functionality\Abstracts\Post;
+use Otomaties\WpModels\PostType;
 
 if (! defined('ABSPATH')) {
     exit;
 }
 
-class Story extends Post
+class Story extends PostType
 {
 
     /**
