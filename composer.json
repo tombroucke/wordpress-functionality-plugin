@@ -1,5 +1,6 @@
 {
     "name": "tombroucke/projectname-functionality",
+    "description": "Functionality plugin boilerplate",
     "authors": [
         {
             "name": "Tom Broucke",
