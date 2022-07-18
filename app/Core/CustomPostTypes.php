@@ -24,6 +24,7 @@ class CustomPostTypes
     //         [
     //             'show_in_feed' => true,
     //             'show_in_rest' => true,
+    //             'menu_icon' => 'dashicons-admin-post',
     //             'labels' => $this->postTypeLabels($postSingularName, $postPluralName),
     //             'dashboard_activity' => true,
     //             'admin_cols' => [
