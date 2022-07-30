@@ -15,7 +15,7 @@ The order in which you find & replace is important, as is the text case.
 
 ### 2.1 Bedrock
 
-1. From project root: `composer require stoutlogic/acf-builder johnbillion/extended-cpts`
+1. From project root: `composer require stoutlogic/acf-builder johnbillion/extended-cpts tombroucke/wp-models`
 2. Append autoload to composer.json, replace file names & namespaces
 
 ```json
