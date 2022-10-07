@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality\Core;
 
 /**
@@ -12,7 +12,7 @@ class Plugin
      *
      * @var Loader
      */
-    protected $loader;
+    protected Loader $loader;
 
     /**
      * The plugin instance
@@ -54,46 +54,77 @@ class Plugin
 
     /**
      * Set locale
+     *
+     * @return void
      */
-    private function setLocale()
+    private function setLocale() : void
     {
-        $plugin_i18n = new i18n();
-        $plugin_i18n->loadPluginTextdomain();
+        (new I18n())->loadPluginTextdomain();
     }
 
-    private function addSocialMedia()
+    /**
+     * Add Social media
+     *
+     * @return void
+     */
+    private function addSocialMedia() : void
     {
         $socialMedia = new SocialMedia();
         $this->loader->addAction('admin_menu', $socialMedia, 'addSettingsPage');
         $this->loader->addAction('admin_init', $socialMedia, 'settingsPageContent');
     }
 
-    private function addShortcodes()
+    /**
+     * Add shortcodes
+     *
+     * @return void
+     */
+    private function addShortcodes() : void
     {
         $shortcodes = new Shortcodes();
-        add_shortcode('foobar', [$shortcodes, 'foobarFunc']);
+        // add_shortcode('foobar', [$shortcodes, 'foobarFunc']);
     }
 
-    private function addOptionsPage()
+    /**
+     * Add options page
+     *
+     * @return void
+     */
+    private function addOptionsPage() : void
     {
         $options = new OptionsPage();
         $this->loader->addAction('acf/init', $options, 'addOptionsPage');
         $this->loader->addAction('acf/init', $options, 'addOptionsFields');
     }
 
-    private function definePostTypeHooks()
+    /**
+     * Define custom post types
+     *
+     * @return void
+     */
+    private function definePostTypeHooks() : void
     {
         $cpts = new CustomPostTypes();
         // $this->loader->addAction('init', $cpts, 'addStories');
         // $this->loader->addAction('acf/init', $cpts, 'addStoryFields');
     }
 
-    private function defineFrontendHooks()
+    /**
+     * Define frontend hooks
+     *
+     * @return void
+     */
+    private function defineFrontendHooks() : void
     {
         $frontend = new Frontend();
     }
 
-    private function defineAdminHooks()
+    /**
+     * Define admin hooks
+     *
+     * @return void
+     */
+    private function defineAdminHooks() : void
     {
         $admin = new Admin();
     }
@@ -103,7 +134,7 @@ class Plugin
      *
      * @return void
      */
-    public function run()
+    public function run() : void
     {
         $this->loader->run();
     }
@@ -113,7 +144,7 @@ class Plugin
      *
      * @return Loader
      */
-    public function getLoader()
+    public function getLoader() : Loader
     {
         return $this->loader;
     }

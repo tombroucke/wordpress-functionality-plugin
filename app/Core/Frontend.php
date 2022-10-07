@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality\Core;
 
 /**

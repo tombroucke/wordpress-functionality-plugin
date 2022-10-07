@@ -1,15 +1,19 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality;
 
 /**
- * Fetch all social media urls and icons
+ * Get defined social media with icons
  *
- * @return array List of all social media
+ * @return array<array<string, string>>
  */
-function socialMedia()
+function socialMedia() : array
 {
-    $return           = [];
-    $social           = get_option('social');
+    $social  = get_option('projectname_social_media');
+    if (!$social || count($social) === 0) {
+        return [];
+    }
+
+    $return = [];
     $socialMediaMap = [
         'facebook'  => [
             'title' => __('Facebook', 'projectname-textdomain'),
@@ -35,20 +39,26 @@ function socialMedia()
             'title' => __('YouTube', 'projectname-textdomain'),
             'icon'  => 'youtube',
         ],
+        'tiktok'   => [
+            'title' => __('TikTok', 'projectname-textdomain'),
+            'icon'  => 'tiktok',
+        ],
+        'tripadvisor'   => [
+            'title' => __('Tripadvisor', 'projectname-textdomain'),
+            'icon'  => 'tripadvisor',
+        ],
     ];
-    if ($social && ! empty($social)) {
-        foreach ($social as $key => $link) {
-            if ($link) {
-                $icon = $socialMediaMap[ $key ]['icon'];
-                $icon = apply_filters('projectname_social_media_icon', $icon);
-                $icon = apply_filters('projectname_social_media_icon' . $icon, $icon);
-                $item = [
-                    'title' => $socialMediaMap[$key]['title'],
-                    'link'  => $link,
-                    'icon'  => apply_filters('projectname_social_media_icon', $icon),
-                ];
-                array_push($return, $item);
-            }
+    foreach ($social as $key => $link) {
+        if ($link) {
+            $icon = $socialMediaMap[ $key ]['icon'];
+            $icon = apply_filters('projectname_social_media_icon', $icon);
+            $icon = apply_filters('projectname_social_media_icon' . $icon, $icon);
+            $item = [
+                'title' => $socialMediaMap[$key]['title'],
+                'link'  => $link,
+                'icon'  => apply_filters('projectname_social_media_icon', $icon),
+            ];
+            array_push($return, $item);
         }
     }
     return apply_filters('projectname_social_media_values', $return);

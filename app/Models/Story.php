@@ -1,11 +1,7 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality\Models;
 
 use Otomaties\WpModels\PostType;
-
-if (! defined('ABSPATH')) {
-    exit;
-}
 
 class Story extends PostType
 {

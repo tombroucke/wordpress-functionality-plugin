@@ -1,5 +1,7 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality\Core;
+
+use function ProjectnameNamespace\Functionality\socialMedia;
 
 /**
  * Social media settings
@@ -10,83 +12,94 @@ class SocialMedia
     /**
      * Holds the values to be used in the fields callbacks
      *
-     * @var array
+     * @var array<string, string>
      */
     private $options;
 
+    public function __construct()
+    {
+        $this->options = get_option('projectname_social_media');
+    }
+
     /**
-     * Add options page
+     * Add settings page
+     *
+     * @return void
      */
-    public function addSettingsPage()
+    public function addSettingsPage() : void
     {
         add_options_page(
             'Settings Admin',
             __('Social media', 'projectname-textdomain'),
             'edit_posts',
-            'social-settings',
-            [$this, 'createAdminPage']
+            'projectname-social-media',
+            [$this, 'renderSocialMediaPage']
         );
     }
 
     /**
-     * Options page callback
+     * Social media callback
+     *
+     * @return void
      */
-    public function createAdminPage()
+    public function renderSocialMediaPage() : void
     {
-        $this->options = get_option('social');
+        socialMedia();
         ?>
-
         <div class="wrap">
             <h1><?php __('Social Media', 'projectname-textdomain'); ?></h1>
             <form method="post" action="options.php">
             <?php
-                settings_fields('social_option_group');
-                do_settings_sections('social-settings');
+                settings_fields('projectname_social_media_option_group');
+                do_settings_sections('projectname-social-media');
                 submit_button();
             ?>
             </form>
         </div>
-
         <?php
     }
 
     /**
-     * Register and add settings
+     * Register options and add settings
+     *
+     * @return void
      */
-    public function settingsPageContent()
+    public function settingsPageContent() : void
     {
         apply_filters(
             'projectname_social_media_channels',
             $social_media = [
                 'facebook'      => 'Facebook',
-                'twitter'       => 'Twitter',
                 'instagram'     => 'Instagram',
-                'pinterest'     => 'Pinterest',
                 'linkedin'      => 'Linkedin',
+                'pinterest'     => 'Pinterest',
+                'tiktok'        => 'TikTok',
+                'tripadvisor'   => 'Tripadvisor',
+                'twitter'       => 'Twitter',
                 'youtube'       => 'Youtube',
             ]
         );
 
         register_setting(
-            'social_option_group',
-            'social',
+            'projectname_social_media_option_group',
+            'projectname_social_media',
             [$this, 'sanitizeUrls']
         );
 
         add_settings_section(
-            'setting_section_id',
+            'projectname_social_media_urls',
             __('Social Media URL\'s', 'projectname-textdomain'),
             [$this, 'printSectionInfo'],
-            'social-settings'
+            'projectname-social-media'
         );
 
         foreach ($social_media as $slug => $name) {
             add_settings_field(
                 $slug,
                 $name,
-                [$this, 'socialCallback'],
-                'social-settings',
-                'setting_section_id',
+                [$this, 'socialMediaCallback'],
+                'projectname-social-media',
+                'projectname_social_media_urls',
                 $args = [
                     'slug' => $slug,
                     'name' => $name,
@@ -98,19 +111,22 @@ class SocialMedia
     /**
      * Sanitize each setting field as needed
      *
-     * @param array $input Contains all settings fields as array keys.
+     * @param array<string, string> $input Contains all settings fields as array keys.
+     * @return array<string, string>
      */
-    public function sanitizeUrls($input)
+    public function sanitizeUrls(array $input) : array
     {
         return array_map(function ($url) {
-            return esc_url($url);
+            return str_replace('http://', 'https://', esc_url($url));
         }, $input);
     }
 
     /**
      * Print the Section text
+     *
+     * @return void
      */
-    public function printSectionInfo()
+    public function printSectionInfo() : void
     {
         esc_html_e('Enter your social media url\'s below:', 'projectname-textdomain');
     }
@@ -118,12 +134,13 @@ class SocialMedia
     /**
      * Get the settings option array and print one of its values
      *
-     * @param array $args The arguments.
+     * @param array<string, string> $args The arguments.
+     * @return void
      */
-    public function socialCallback($args)
+    public function socialMediaCallback(array $args) : void
     {
         printf(
-            '<input type="text" class="regular-text" id="title" name="social[%s]" value="%s" />',
+            '<input type="text" class="regular-text" id="title" name="projectname_social_media[%s]" value="%s" />',
             $args['slug'],
             isset($this->options[$args['slug']]) ? esc_attr($this->options[$args['slug']]) : ''
         );

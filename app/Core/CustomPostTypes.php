@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality\Core;
 
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -101,9 +101,9 @@ class CustomPostTypes
      *
      * @param  string $singular_name The singular name for the post type.
      * @param  string $plural_name   The plural name for the post type.
-     * @return array
+     * @return array<string, string>
      */
-    private function postTypeLabels($singular_name, $plural_name)
+    private function postTypeLabels(string $singular_name, string $plural_name) : array
     {
         return [
             'add_new' => __('Add New', 'projectname-textdomain'),
@@ -168,9 +168,9 @@ class CustomPostTypes
      *
      * @param  string $singular_name The singular name for the taxonomy.
      * @param  string $plural_name   The plural name for the taxonomy.
-     * @return array
+     * @return array<string, string>
      */
-    private function taxonomyLabels($singular_name, $plural_name)
+    private function taxonomyLabels(string $singular_name, string $plural_name) : array
     {
         return [
             /* translators: %s: plural taxonomy name */

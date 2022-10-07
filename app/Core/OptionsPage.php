@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace ProjectnameNamespace\Functionality\Core;
 
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -11,18 +11,20 @@ class OptionsPage
 
     /**
      * Create pages
+     *
+     * @return void
      */
-    public function addOptionsPage()
+    public function addOptionsPage() : void
     {
         
         acf_add_options_page(
-            array(
+            [
                 'page_title'    => __('Projectname settings', 'projectname-textdomain'),
                 'menu_title'    => __('Projectname settings', 'projectname-textdomain'),
                 'menu_slug'     => 'projectname-settings',
                 'capability'    => 'edit_posts',
                 'redirect'      => false,
-            )
+            ]
         );
 
         // acf_add_options_sub_page(

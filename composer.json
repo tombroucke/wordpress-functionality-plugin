@@ -11,11 +11,13 @@
         "php": ">=8",
         "johnbillion/extended-cpts": "^4.3",
         "stoutlogic/acf-builder": "^1.12",
-        "tombroucke/wp-models": "^1.0"
+        "tombroucke/wp-models": "^2.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5.4",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "php-stubs/acf-pro-stubs": "^6.0"
     },
 	"autoload": {
 		"psr-4": {
@@ -25,7 +27,8 @@
 	},
     "scripts": {
         "test" : [
-            "phpcs  --standard=PSR2 app"
+            "phpcs  --standard=PSR2 app",
+            "vendor/bin/phpstan analyze app --memory-limit 512M"
         ]
     }
 }
