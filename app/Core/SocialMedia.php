@@ -1,8 +1,6 @@
 <?php
 namespace ProjectnameNamespace\Functionality\Core;
 
-use function ProjectnameNamespace\Functionality\socialMedia;
-
 /**
  * Social media settings
  */
@@ -44,7 +42,6 @@ class SocialMedia
      */
     public function renderSocialMediaPage() : void
     {
-        socialMedia();
         ?>
         <div class="wrap">
             <h1><?php __('Social Media', 'projectname-textdomain'); ?></h1>
