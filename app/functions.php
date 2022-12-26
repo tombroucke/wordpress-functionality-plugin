@@ -48,6 +48,9 @@ function socialMedia() : array
             'icon'  => 'tripadvisor',
         ],
     ];
+    if (!$social || count($social) > 0) {
+        return [];
+    }
     foreach ($social as $key => $link) {
         if ($link) {
             $icon = $socialMediaMap[ $key ]['icon'];
