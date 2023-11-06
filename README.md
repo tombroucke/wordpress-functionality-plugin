@@ -79,7 +79,7 @@ wp acorn optimize:clear
 
 ## Default options
 By default, this plugin provides a "General" options page, with company info, social media links, opening hours and newsletter signup form.
-It provides a shortcode + view for the opening hours (`[opening-hours]`) and the newsletter signup form (`[newsletter-signup-form]`).
+It provides a shortcode + view for the opening hours `[opening-hours]` and the newsletter signup form `[newsletter-signup-form]`.
 
 ## Adding functionality
 The `boot()` method of `src/Providers/{{WebsiteName}}ServiceProvider.php` is an entrypoint for custom functionality. 
@@ -87,13 +87,21 @@ The `boot()` method of `src/Providers/{{WebsiteName}}ServiceProvider.php` is an 
 ## Acorn commands
 
 ### Register post type
-`wp acorn website-name:post-type Story`, where 'Story' is the name of your post type. Recipe should be PascalCase. The post type slug and labels will be generated automatically. A Recipe.php file will be created in src/PostTypes, and will be registered automatically.
+`wp acorn website-name:post-type Story`
+
+Where 'Story' is the name of your post type. Recipe should be PascalCase. The post type slug and labels will be generated automatically. A Recipe.php file will be created in src/PostTypes, and will be registered automatically.
 
 ### Register taxonomy
-`wp acorn website-name:post-type Genre Story`, where 'Genre' is the name of your post type and 'Story' is your post type. Both should be PascalCase. The taxonomy slug and labels will be generated automatically. A Genre.php file will be created in src/Taxonomies/Recipe, and will be registered automatically.
+`wp acorn website-name:post-type Genre Story`
+
+Where 'Genre' is the name of your post type and 'Story' is your post type. Both should be PascalCase. The taxonomy slug and labels will be generated automatically. A Genre.php file will be created in src/Taxonomies/Recipe, and will be registered automatically.
 
 ### Add ACF Options page
-`wp acorn website-name:options-page CustomOptions`, where 'CustomOptions' is the name of your options page. CustomOptions should be PascalCase. A CustomOptions.php file will be created in src/OptionsPages, and will be registered automatically.
+`wp acorn website-name:options-page CustomOptions`
+
+Where 'CustomOptions' is the name of your options page. CustomOptions should be PascalCase. A CustomOptions.php file will be created in src/OptionsPages, and will be registered automatically.
 
 ### Add shortcode
-`wp acorn website-name:shortcode CustomShortcode`, where 'CustomShortcode' is the PascalCase version of 'custom-shortcode'. A controller will be created in src/Shortcodes, and a view will be created in resources/views/shortcodes.
+`wp acorn website-name:shortcode CustomShortcode`
+
+Where 'CustomShortcode' is the PascalCase version of 'custom-shortcode'. A controller will be created in src/Shortcodes, and a view will be created in resources/views/shortcodes.
