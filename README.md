@@ -44,9 +44,9 @@
 > [!IMPORTANT]  
 > Replace these strings first.
 > 
-> - website-name
-> - website_name
-> - WebsiteName
+> - {{website-name}}
+> - {{website_name}}
+> - {{WebsiteName}}
 
 
 At the moment, there is no way to add a namespace to autoload.psr-4 in composer.json through CLI, so it should be manually added:
@@ -60,16 +60,16 @@ At the moment, there is no way to add a namespace to autoload.psr-4 in composer.
 ```
 
 ```bash
-git clone git@github.com:tombroucke/wordpress-functionality-plugin.git website-name
-rm -rf website-name/.git
-mv website-name/src/Providers/FunctionalityPluginServiceProvider.php website-name/src/Providers/WebsiteNameServiceProvider.php
-composer config --json --merge extra.acorn.providers '["FunctionalityPlugin\\Providers\\AppServiceProvider", "FunctionalityPlugin\\Providers\\FunctionalityPluginServiceProvider"]'
-composer config --json --merge extra.acorn.aliases '{"FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend", "FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin"}'
+git clone git@github.com:tombroucke/wordpress-functionality-plugin.git www/app/mu-plugins/{{website-name}}
+rm -rf {{website-name}}/.git
+mv www/app/mu-plugins/{{website-name}}/src/Providers/FunctionalityPluginServiceProvider.php www/app/mu-plugins/{{website-name}}/src/Providers/{{WebsiteName}}ServiceProvider.php
+composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Providers\\AppServiceProvider", "{{WebsiteName}}\\Providers\\{{WebsiteName}}ServiceProvider"]'
+composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin"}'
 
 
-find website-name -type f -name '*.php' -not -exec sed -i '' "s/FunctionalityPlugin/WebsiteName/g" {} \;
-find website-name -type f -name '*.php' -not -exec sed -i '' "s/functionality-plugin/website-name/g" {} \;
-find website-name -type f -name '*.php' -not -exec sed -i '' "s/functionality_plugin/website_name/g" {} \;
+find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i '' "s/FunctionalityPlugin/{{WebsiteName}}/g" {} \;
+find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i '' "s/functionality-plugin/{{website-name}}/g" {} \;
+find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i '' "s/functionality_plugin/{{website_name}}/g" {} \;
 
 composer dump-autoload
 wp acorn optimize:clear
