@@ -1,5 +1,5 @@
 {
-    "name": "tombroucke/functionality_plugin",
+    "name": "tombroucke/wordpress-functionality-plugin",
     "description": "Functionality plugin boilerplate",
     "authors": [
         {
@@ -21,10 +21,21 @@
     },
 	"autoload": {
 		"psr-4": {
-			"ProjectnameNamespace\\Functionality\\": "app/"
-		},
-		"files": ["app/functions.php"]
+            "FunctionalityPlugin\\": "src/"
+		}
 	},
+    "extra": {
+        "acorn": {
+            "providers": [
+                "FunctionalityPlugin\\Providers\\AppServiceProvider",
+                "FunctionalityPlugin\\Providers\\FunctionalityPluginServiceProvider"
+            ],
+            "aliases": {
+                "FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend",
+                "FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin"
+            }
+        }
+    },
     "scripts": {
         "test" : [
             "phpcs  --standard=PSR2 app",
