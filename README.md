@@ -41,6 +41,8 @@
 
 ### Bash script
 
+Run the script below from your site (Bedrock) root. In a default bedrock install, the web root is "web". In my projects, the webroot is "www'. If your webroot is web, you should also replace 'www' with 'web' in the script below.
+
 > [!IMPORTANT]  
 > Replace these strings first.
 > 
@@ -74,3 +76,24 @@ find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i
 composer dump-autoload
 wp acorn optimize:clear
 ```
+
+## Default options
+By default, this plugin provides a "General" options page, with company info, social media links, opening hours and newsletter signup form.
+It provides a shortcode + view for the opening hours (`[opening-hours]`) and the newsletter signup form (`[newsletter-signup-form]`).
+
+## Adding functionality
+The `boot()` method of `src/Providers/{{WebsiteName}}ServiceProvider.php` is an entrypoint for custom functionality. 
+
+## Acorn commands
+
+### Register post type
+`wp acorn website-name:post-type Story`, where 'Story' is the name of your post type. Recipe should be PascalCase. The post type slug and labels will be generated automatically. A Recipe.php file will be created in src/PostTypes, and will be registered automatically.
+
+### Register taxonomy
+`wp acorn website-name:post-type Genre Story`, where 'Genre' is the name of your post type and 'Story' is your post type. Both should be PascalCase. The taxonomy slug and labels will be generated automatically. A Genre.php file will be created in src/Taxonomies/Recipe, and will be registered automatically.
+
+### Add ACF Options page
+`wp acorn website-name:options-page CustomOptions`, where 'CustomOptions' is the name of your options page. CustomOptions should be PascalCase. A CustomOptions.php file will be created in src/OptionsPages, and will be registered automatically.
+
+### Add shortcode
+`wp acorn website-name:shortcode CustomShortcode`, where 'CustomShortcode' is the PascalCase version of 'custom-shortcode'. A controller will be created in src/Shortcodes, and a view will be created in resources/views/shortcodes.
