@@ -54,7 +54,7 @@ At the moment, there is no way to add a namespace to autoload.psr-4 in composer.
 ```json
 "autoload": {
 	"psr-4": {
-		"WebsiteName\\": "www/app/mu-plugins/website-name/src/"
+		"{{WebsiteName}}\\": "www/app/mu-plugins/{{website-name}}/src/"
 	}
 }
 ```
