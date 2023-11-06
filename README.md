@@ -69,9 +69,9 @@ composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Provide
 composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin"}'
 
 
-find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i '' "s/FunctionalityPlugin/{{WebsiteName}}/g" {} \;
-find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i '' "s/functionality-plugin/{{website-name}}/g" {} \;
-find www/app/mu-plugins/{{website-name}} -type f -name '*.php' -not -exec sed -i '' "s/functionality_plugin/{{website_name}}/g" {} \;
+find www/app/mu-plugins/{{website-name}} -type f \( -name '*.php' -o -name '*.stub' \) -not -exec sed -i '' "s/FunctionalityPlugin/{{WebsiteName}}/g" {} \;
+find www/app/mu-plugins/{{website-name}} -type f \( -name '*.php' -o -name '*.stub' \) -not -exec sed -i '' "s/functionality-plugin/{{website-name}}/g" {} \;
+find www/app/mu-plugins/{{website-name}} -type f \( -name '*.php' -o -name '*.stub' \) -not -exec sed -i '' "s/functionality_plugin/{{website_name}}/g" {} \;
 
 composer dump-autoload
 wp acorn optimize:clear
