@@ -1,34 +1,76 @@
-# Installation
+# Functionality plugins
 
-## 1. Renaming
+## Installation
 
-The order in which you find & replace is important, as is the text case.
+### Manual
 
-1. Rename plugin directory & projectname-functionality.php
-2. Replace `ProjectnameNamespace` by your namespace
-3. Replace `Projectname` by your project name
-4. Replace `projectname-textdomain` (case-sensitive)
-5. Replace `projectname`(case-sensitive)
-6. Comment out modules you don't need
+1. Run `git clone git@github.com:tombroucke/wordpress-functionality-plugin.git {{website-name}}` in your mu-plugins directory
+2. Remove .git directory
+3. Rename `src/Providers/FunctionalityPluginServiceProvider.php` to `src/Providers/WebsiteNameServiceProvider.php`
+4. Find and replace (Case-sensitive)
+	- `FunctionalityPlugin` > WebsiteName
+	- `functionality-plugin` > website-name
+	- `functionality_plugin` > website_name
+5. Add to root `composer.json`:
+	
+	Also replace 
+	- `FunctionalityPlugin` with WebsiteName
+	- `functionality-plugin` with website-name
 
-## 2. Installing
+	```json
+	"extra": {
+		"acorn": {
+			"providers": [
+				"FunctionalityPlugin\\Providers\\AppServiceProvider",
+				"FunctionalityPlugin\\Providers\\FunctionalityPluginServiceProvider"
+			],
+			"aliases": {
+				"FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend",
+				"FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin"
+			}
+		}
+	}
+	```
+	```json
+	"autoload": {
+		"psr-4": {
+			"FunctionalityPlugin\\": "www/app/mu-plugins/functionality-plugin/src/"
+		}
+	}
+	```
 
-### 2.1 Bedrock
+### Bash script
 
-1. From project root: `composer require stoutlogic/acf-builder johnbillion/extended-cpts tombroucke/wp-models`
-2. Append autoload to composer.json, replace file names & namespaces
+> [!IMPORTANT]  
+> Replace these strings first.
+> 
+> - website-name
+> - website_name
+> - WebsiteName
+
+
+At the moment, there is no way to add a namespace to autoload.psr-4 in composer.json through CLI, so it should be manually added:
 
 ```json
 "autoload": {
-  "psr-4": {
-    "ProjectnameNamespace\\Functionality\\": "www/app/mu-plugins/wordpress-functionality-plugin/app/"
-  },
-  "files": ["www/app/mu-plugins/wordpress-functionality-plugin/app/functions.php"]
+	"psr-4": {
+		"WebsiteName\\": "www/app/mu-plugins/website-name/src/"
+	}
 }
 ```
 
+```bash
+git clone git@github.com:tombroucke/wordpress-functionality-plugin.git website-name
+rm -rf website-name/.git
+mv website-name/src/Providers/FunctionalityPluginServiceProvider.php website-name/src/Providers/WebsiteNameServiceProvider.php
+composer config --json --merge extra.acorn.providers '["FunctionalityPlugin\\Providers\\AppServiceProvider", "FunctionalityPlugin\\Providers\\FunctionalityPluginServiceProvider"]'
+composer config --json --merge extra.acorn.aliases '{"FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend", "FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin"}'
 
-### 2.2 Standalone
 
-1. Remove required packages from composer.json in case you aren't using custom post types.
-2. Run `composer install` to autoload files & install dependencies.
+find website-name -type f -name '*.php' -not -exec sed -i '' "s/FunctionalityPlugin/WebsiteName/g" {} \;
+find website-name -type f -name '*.php' -not -exec sed -i '' "s/functionality-plugin/website-name/g" {} \;
+find website-name -type f -name '*.php' -not -exec sed -i '' "s/functionality_plugin/website_name/g" {} \;
+
+composer dump-autoload
+wp acorn optimize:clear
+```

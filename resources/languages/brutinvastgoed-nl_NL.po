@@ -1,0 +1,178 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Brutin Vastgoed\n"
+"POT-Creation-Date: 2023-11-03 23:31+0100\n"
+"PO-Revision-Date: 2023-11-03 23:31+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.3.1\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: functionality_plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: src/PostTypes/Story.php:18
+msgid "Story"
+msgstr "Verhaal"
+
+#: src/PostTypes/Story.php:19
+msgid "Stories"
+msgstr "Verhalen"
+
+#: src/PostTypes/Story.php:29
+msgid "Illustration"
+msgstr "Illustratie"
+
+#: src/Services/Labels.php:9
+msgid "Add New"
+msgstr "Nieuw toevoegen"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:11
+#, php-format
+msgid "Add New %s"
+msgstr "Nieuw(e) %s toevoegen"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:13
+#, php-format
+msgid "Edit %s"
+msgstr "%s bewerken"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:15
+#, php-format
+msgid "New %s"
+msgstr "Nieuw(e) %s"
+
+#. translators: %s: singular post name
+#. translators: %s: plural post name
+#: src/Services/Labels.php:17 src/Services/Labels.php:19
+#, php-format
+msgid "View %s"
+msgstr "Bekijk %s"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:21
+#, php-format
+msgid "Search %s"
+msgstr "%s zoeken"
+
+#. translators: %s: plural post name to lower
+#: src/Services/Labels.php:23
+#, php-format
+msgid "No %s found."
+msgstr "Geen %s gevonden."
+
+#: src/Services/Labels.php:26
+#, php-format
+msgid "No %s found in trash."
+msgstr "Geen %s gevonden in de prullenbak."
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:30
+#, php-format
+msgid "Parent %s:"
+msgstr "Bovenliggend(e) %s:"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:32
+#, php-format
+msgid "All %s"
+msgstr "Alle %s"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:34
+#, php-format
+msgid "%s Archives"
+msgstr "%s Archieven"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:36
+#, php-format
+msgid "%s Attributes"
+msgstr "%s kenmerken"
+
+#. translators: %s: singular post name to lower
+#: src/Services/Labels.php:38
+#, php-format
+msgid "Insert into %s"
+msgstr "Toevoegen aan %s"
+
+#: src/Services/Labels.php:41
+#, php-format
+msgid "Uploaded to this %s"
+msgstr "Geupload naar deze %s"
+
+#. translators: %s: plural post name to lower
+#: src/Services/Labels.php:45
+#, php-format
+msgid "Filter %s list"
+msgstr "Filter %s lijst"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:47
+#, php-format
+msgid "%s list navigation"
+msgstr "Navigatie door %slijst"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:49
+#, php-format
+msgid "%s list"
+msgstr "%s lijst"
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:51
+#, php-format
+msgid "%s published."
+msgstr "%s gepubliceerd."
+
+#: src/Services/Labels.php:54
+#, php-format
+msgid "%s published privately."
+msgstr "%s privé gepubliceerd."
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:58
+#, php-format
+msgid "%s reverted to draft."
+msgstr "%s teruggezet naar concept."
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:60
+#, php-format
+msgid "%s scheduled."
+msgstr "%s gepland."
+
+#. translators: %s: singular post name
+#: src/Services/Labels.php:62
+#, php-format
+msgid "%s updated."
+msgstr "%s bijgewerkt."
+
+#. Plugin Name of the plugin/theme
+#, fuzzy
+msgid "Brutin Vastgoed"
+msgstr "Brutin Vastgoed"
+
+#. Description of the plugin/theme
+#, fuzzy
+msgid "Add custom functionality to the Brutin Vastgoed website."
+msgstr "Voeg aangepaste functionaliteit toe aan de website van Brutin Vastgoed."
+
+#. Author of the plugin/theme
+msgid "Tom Broucke"
+msgstr "Tom Broucke"
+
+#. Author URI of the plugin/theme
+msgid "https://tombroucke.be"
+msgstr "https://tombroucke.be/"
