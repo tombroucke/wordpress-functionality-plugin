@@ -63,7 +63,7 @@ class ShortcodeCommand extends GeneratorCommand
     public function handle()
     {
         $this->info(sprintf('Generating shortcode [%s]', $this->getShortcodeName()));
-        $viewPath = view()->getFinder()->getHints()['FunctionalityPlugin'][0] . '/shortcodes';
+        $viewPath = view()->getFinder()->getHints()['FunctionalityPlugin'][0] . '/shortcodes/';
         $destination = $viewPath . $this->getShortcodeName() . '.blade.php';
         $this->files->put($destination, $this->files->get($this->getViewStub()));
         parent::handle();
