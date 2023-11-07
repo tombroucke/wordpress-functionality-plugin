@@ -70,7 +70,7 @@ class General extends AbstractsOptionsPage implements OptionsPage
         $fields = collect([
             'company' => __('Company', 'functionality-plugin'),
             'street' => __('Street', 'functionality-plugin'),
-            'number' => __('Number', 'functionality-plugin'),
+            'street_number' => __('Number', 'functionality-plugin'),
             'postcode' => __('Postcode', 'functionality-plugin'),
             'city' => __('City', 'functionality-plugin'),
             'country' => __('Country', 'functionality-plugin'),
