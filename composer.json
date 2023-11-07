@@ -32,7 +32,8 @@
             ],
             "aliases": {
                 "FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend",
-                "FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin"
+                "FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin",
+                "FunctionalityPluginContactInformation": "FunctionalityPlugin\\Facades\\ContactInformation"
             }
         }
     },

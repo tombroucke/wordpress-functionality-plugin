@@ -1,0 +1,2 @@
+{!! FunctionalityPluginContactInformation::formattedAddress() !!}
+{!! FunctionalityPluginContactInformation::formattedPhoneEmail() !!}

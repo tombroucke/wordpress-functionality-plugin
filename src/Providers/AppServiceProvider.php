@@ -44,6 +44,18 @@ class AppServiceProvider extends ServiceProvider
         $this->initPostTypes();
         $this->initOptionsPages();
         $this->initShortcodes();
+        
+        Str::macro('phoneLink', function ($phone) {
+            return Str::of($phone)
+                ->replace(['(0)', '+'], ['', '00'])
+                ->replaceMatches('/[^0-9]/', '')
+                ->prepend('tel:');
+        });
+
+        Str::macro('emailLink', function ($email) {
+            return Str::of(antispambot($email))
+                ->prepend('mailto:');
+        });
     }
     
     private function loadTextdomain()

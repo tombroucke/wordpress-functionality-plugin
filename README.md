@@ -26,7 +26,8 @@
 			],
 			"aliases": {
 				"FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend",
-				"FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin"
+				"FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin",
+				"FunctionalityPluginContactInformation": "FunctionalityPlugin\\Facades\\ContactInformation"
 			}
 		}
 	}
@@ -66,7 +67,7 @@ git clone git@github.com:tombroucke/wordpress-functionality-plugin.git www/app/m
 rm -rf {{website-name}}/.git
 mv www/app/mu-plugins/{{website-name}}/src/Providers/FunctionalityPluginServiceProvider.php www/app/mu-plugins/{{website-name}}/src/Providers/{{WebsiteName}}ServiceProvider.php
 composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Providers\\AppServiceProvider", "{{WebsiteName}}\\Providers\\{{WebsiteName}}ServiceProvider"]'
-composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin"}'
+composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin", "{{WebsiteName}}ContactInformation": "{{WebsiteName}}\\Facades\\ContactInformation"}'
 
 
 find www/app/mu-plugins/{{website-name}} -type f \( -name '*.php' -o -name '*.stub' \) -not -exec sed -i '' "s/FunctionalityPlugin/{{WebsiteName}}/g" {} \;
@@ -80,6 +81,16 @@ wp acorn optimize:clear
 ## Default options
 By default, this plugin provides a "General" options page, with company info, social media links, opening hours and newsletter signup form.
 It provides a shortcode + view for the opening hours `[opening-hours]` and the newsletter signup form `[newsletter-signup-form]`.
+
+### Contact information
+To fetch contact information, you can use the Facade `{{WebsiteName}}ContactInformation`. 
+
+```php
+{!! {{WebsiteName}}ContactInformation::formattedAddress() !!}
+{!! {{WebsiteName}}ContactInformation::formattedPhoneEmail() !!}
+```
+
+You could also use the `[contact-information]` shortcode or `@include('{{WebsiteName}}::shortcodes.contact-information')`
 
 ## Adding functionality
 The `boot()` method of `src/Providers/{{WebsiteName}}ServiceProvider.php` is an entrypoint for custom functionality. 

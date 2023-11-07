@@ -17,6 +17,10 @@ class FunctionalityPluginServiceProvider extends ServiceProvider
         $this->app->singleton('functionality_plugin.admin', function () {
             return new \FunctionalityPlugin\Admin();
         });
+
+        $this->app->singleton('functionality_plugin.contact_information', function () {
+            return new \FunctionalityPlugin\ContactInformation();
+        });
     }
     
     public function boot()
