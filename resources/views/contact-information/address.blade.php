@@ -1,6 +1,6 @@
 <p>
-	@if ($companyName)
-		{!! $companyName !!}<br>
+	@if ($company)
+		{!! $company !!}<br>
 	@endif
 	@if ($street && $streetNumber)
 		{!! $street !!} {!! $streetNumber !!}<br>

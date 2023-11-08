@@ -4,7 +4,7 @@ namespace FunctionalityPlugin;
 
 class ContactInformation
 {
-    public function companyName() : ?string
+    public function company() : ?string
     {
         return get_field('contact_information_company', 'option');
     }
@@ -39,9 +39,19 @@ class ContactInformation
         return get_field('contact_information_email', 'option');
     }
 
+    public function vatNumber() : ?string
+    {
+        return get_field('contact_information_vat_number', 'option');
+    }
+
+    public function bankAccountNumber() : ?string
+    {
+        return get_field('contact_information_bank_account_number', 'option');
+    }
+
     public function formattedAddress() {
-        return view('FunctionalityPlugin::contact-information.address', [
-            'companyName' => $this->companyName(),
+        return view('DokDrie::contact-information.address', [
+            'company' => $this->company(),
             'street' => $this->street(),
             'streetNumber' => $this->streetNumber(),
             'postcode' => $this->postcode(),
@@ -50,8 +60,20 @@ class ContactInformation
     }
 
     public function formattedPhoneEmail() {
-        return view('FunctionalityPlugin::contact-information.phone-email', [
+        return view('DokDrie::contact-information.phone-email', [
             'phone' => $this->phone(),
+            'email' => $this->email(),
+        ])->toHtml();
+    }
+
+    public function formattedPhone() {
+        return view('DokDrie::contact-information.phone', [
+            'phone' => $this->phone(),
+        ])->toHtml();
+    }
+
+    public function formattedEmail() {
+        return view('DokDrie::contact-information.email', [
             'email' => $this->email(),
         ])->toHtml();
     }

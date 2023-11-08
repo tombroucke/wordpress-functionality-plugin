@@ -17,6 +17,18 @@ class ContactInformation implements Shortcode
      */
     public function callback(array|string $atts = []) : string
     {
-        return view('FunctionalityPlugin::shortcodes.contact-information')->toHtml();
+        $a = shortcode_atts(
+            [
+                'property' => '',
+            ],
+            $atts
+        );
+        $property = Str::of($a['property'])
+            ->replace(' ', '')
+            ->toString();
+
+        return view('DokDrie::shortcodes.contact-information', [
+            'property' => $property ?: null,
+        ])->toHtml();
     }
 }

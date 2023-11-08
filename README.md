@@ -93,12 +93,24 @@ To fetch contact information, you can use the Facade `{{WebsiteName}}ContactInfo
 
 You could also use the `[contact-information]` shortcode or `@include('{{WebsiteName}}::shortcodes.contact-information')`
 
+```
+[contact-information property="address"]
+[contact-information property="phone"]
+[contact-information property="email"]
+[contact-information property="vat_number"]
+[contact-information property="bank_account_number"]
+```
+
 ### Social media
 To fetch social media, you can use the Facade `{{WebsiteName}}SocialMedia`.
 
 ```php
 $channels = {{WebsiteName}}SocialMedia::channels()
 ``` 
+
+## Functionality
+- Str::phoneLink('+12 345 678 910')
+- Str::emailLink('hello@example.com')
 
 ## Adding functionality
 The `boot()` method of `src/Providers/{{WebsiteName}}ServiceProvider.php` is an entrypoint for custom functionality. 
