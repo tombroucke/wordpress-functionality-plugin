@@ -23,7 +23,7 @@ class FunctionalityPluginServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('functionality_plugin.social_media', function () {
-            return new \FunctionalityPlugin\Socialmedia();
+            return new \FunctionalityPlugin\SocialMedia();
         });
     }
     
