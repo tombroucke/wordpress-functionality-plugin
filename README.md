@@ -86,12 +86,19 @@ It provides a shortcode + view for the opening hours `[opening-hours]` and the n
 ### Contact information
 To fetch contact information, you can use the Facade `{{WebsiteName}}ContactInformation`. 
 
-```php
+```blade
 {!! {{WebsiteName}}ContactInformation::formattedAddress() !!}
 {!! {{WebsiteName}}ContactInformation::formattedPhoneEmail() !!}
 ```
 
 You could also use the `[contact-information]` shortcode or `@include('{{WebsiteName}}::shortcodes.contact-information')`
+
+### Social media
+To fetch social media, you can use the Facade `{{WebsiteName}}SocialMedia`.
+
+```php
+$channels = {{WebsiteName}}SocialMedia::channels()
+``` 
 
 ## Adding functionality
 The `boot()` method of `src/Providers/{{WebsiteName}}ServiceProvider.php` is an entrypoint for custom functionality. 
