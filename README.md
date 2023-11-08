@@ -65,7 +65,7 @@ At the moment, there is no way to add a namespace to autoload.psr-4 in composer.
 
 ```bash
 git clone git@github.com:tombroucke/wordpress-functionality-plugin.git www/app/mu-plugins/{{website-name}}
-rm -rf {{website-name}}/.git
+rm -rf www/app/mu-plugins/{{website-name}}/.git
 mv www/app/mu-plugins/{{website-name}}/src/Providers/FunctionalityPluginServiceProvider.php www/app/mu-plugins/{{website-name}}/src/Providers/{{WebsiteName}}ServiceProvider.php
 composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Providers\\AppServiceProvider", "{{WebsiteName}}\\Providers\\{{WebsiteName}}ServiceProvider"]'
 composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin", "{{WebsiteName}}ContactInformation": "{{WebsiteName}}\\Facades\\ContactInformation", "{{WebsiteName}}SocialMedia": "{{WebsiteName}}\\Facades\\SocialMedia"}'
