@@ -27,7 +27,8 @@
 			"aliases": {
 				"FunctionalityPluginFrontend": "FunctionalityPlugin\\Facades\\Frontend",
 				"FunctionalityPluginAdmin": "FunctionalityPlugin\\Facades\\Admin",
-				"FunctionalityPluginContactInformation": "FunctionalityPlugin\\Facades\\ContactInformation"
+				"FunctionalityPluginContactInformation": "FunctionalityPlugin\\Facades\\ContactInformation",
+				"FunctionalityPluginSocialMedia": "FunctionalityPlugin\\Facades\\SocialMedia"
 			}
 		}
 	}
@@ -67,7 +68,7 @@ git clone git@github.com:tombroucke/wordpress-functionality-plugin.git www/app/m
 rm -rf {{website-name}}/.git
 mv www/app/mu-plugins/{{website-name}}/src/Providers/FunctionalityPluginServiceProvider.php www/app/mu-plugins/{{website-name}}/src/Providers/{{WebsiteName}}ServiceProvider.php
 composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Providers\\AppServiceProvider", "{{WebsiteName}}\\Providers\\{{WebsiteName}}ServiceProvider"]'
-composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin", "{{WebsiteName}}ContactInformation": "{{WebsiteName}}\\Facades\\ContactInformation"}'
+composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}Frontend": "{{WebsiteName}}\\Facades\\Frontend", "{{WebsiteName}}Admin": "{{WebsiteName}}\\Facades\\Admin", "{{WebsiteName}}ContactInformation": "{{WebsiteName}}\\Facades\\ContactInformation", "{{WebsiteName}}SocialMedia": "{{WebsiteName}}\\Facades\\SocialMedia"}'
 
 
 find www/app/mu-plugins/{{website-name}} -type f \( -name '*.php' -o -name '*.stub' \) -not -exec sed -i '' "s/FunctionalityPlugin/{{WebsiteName}}/g" {} \;

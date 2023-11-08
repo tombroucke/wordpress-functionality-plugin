@@ -2,6 +2,7 @@
 
 namespace FunctionalityPlugin\OptionsPages;
 
+use FunctionalityPluginSocialMedia as SocialMedia;
 use FunctionalityPlugin\Abstracts\OptionsPage as AbstractsOptionsPage;
 use FunctionalityPlugin\Concerns\HasHooks;
 use StoutLogic\AcfBuilder\FieldsBuilder;
@@ -11,7 +12,7 @@ class General extends AbstractsOptionsPage implements OptionsPage
 {
     use HasHooks;
 
-    protected string $slug = 'functionality_plugin-settings';
+    protected string $slug = 'functionality-plugin-settings';
 
     protected string $title = 'General Settings';
 
@@ -39,22 +40,12 @@ class General extends AbstractsOptionsPage implements OptionsPage
                 'label' => __('Social media URL\'s', 'functionality-plugin'),
             ]);
 
-        $channels = collect([
-            'facebook' => __('Facebook', 'functionality-plugin'),
-            'instagram' => __('Instagram', 'functionality-plugin'),
-            'linkedin' => __('LinkedIn', 'functionality-plugin'),
-            'x' => __('X', 'functionality-plugin'),
-            'youtube' => __('YouTube', 'functionality-plugin'),
-            'vimeo' => __('Vimeo', 'functionality-plugin'),
-            'tiktok' => __('TikTok', 'functionality-plugin'),
-            'pinterest' => __('Pinterest', 'functionality-plugin'),
-            'tripadvisor' => __('Tripadvisor', 'functionality-plugin'),
-        ]);
+        $channels = SocialMedia::allChannels();
 
-        $channels->each(function ($label, $key) use ($settings) {
+        $channels->each(function ($channel, $key) use ($settings) {
             $settings
                 ->addUrl('social_media_' . $key, [
-                    'label' => $label,
+                    'label' => $channel['label'],
                 ]);
         });
         return $settings;
