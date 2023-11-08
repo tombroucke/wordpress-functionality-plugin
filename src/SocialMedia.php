@@ -6,10 +6,11 @@ use Illuminate\Support\Collection;
 
 class SocialMedia
 {
-    
-    public function allChannels() : Collection
+    private Collection $channels;
+
+    public function __construct()
     {
-        return collect([
+        $this->channels = collect([
             'facebook' => [
                 'label' => __('Facebook', 'functionality-plugin'),
                 'icon' => 'facebook'
@@ -48,14 +49,18 @@ class SocialMedia
             ],
         ]);
     }
+
+    public function allChannels() : Collection
+    {
+        return $this->channels->map(function ($channel, $key) {
+            $channel['link'] = get_field('social_media_' . $key, 'option');
+            return $channel;
+        });
+    }
     
     public function channels() : Collection
     {
         return $this->allChannels()
-            ->map(function ($channel, $key) {
-                $channel['link'] = get_field('social_media_' . $key, 'option');
-                return $channel;
-            })
             ->filter(function ($channel) {
                 return $channel['link'];
             });
