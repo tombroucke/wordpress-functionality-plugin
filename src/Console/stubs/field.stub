@@ -7,17 +7,12 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class {{class_name}} extends Field
 {
-    protected string $slug = '{{slug}}';
-
-    protected string $title = '{{name}}';
-
-    public function __construct()
+    protected function fields() : FieldsBuilder
     {
-        $this->title = __('{{name}}', 'functionality-plugin');
-    }
-
-    protected function fields(FieldsBuilder $fieldsBuilder) : FieldsBuilder
-    {
+        $fieldsBuilder = new FieldsBuilder({{slug}}, [
+            'title' => __('{{name}}', 'functionality-plugin'),
+        ]);
+		
         $fieldsBuilder
             ->setLocation('post_type', '==', '{{slug}}');
 
