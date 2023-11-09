@@ -4,6 +4,7 @@ namespace FunctionalityPlugin\Providers;
 
 use Illuminate\Support\Str;
 use Roots\Acorn\ServiceProvider;
+use FunctionalityPlugin\Console\FieldCommand;
 use FunctionalityPlugin\Console\PostTypeCommand;
 use FunctionalityPlugin\Console\TaxonomyCommand;
 use FunctionalityPlugin\Console\ShortcodeCommand;
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
             PostTypeCommand::class,
             TaxonomyCommand::class,
             OptionsPageCommand::class,
+            FieldCommand::class,
             ShortcodeCommand::class,
         ]);
 
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadTextdomain();
         $this->initPostTypes();
         $this->initOptionsPages();
+        $this->initFields();
         $this->initShortcodes();
         
         Str::macro('phoneLink', function ($phone) {
@@ -84,6 +87,17 @@ class AppServiceProvider extends ServiceProvider
     {
         $this
             ->collectFilesIn('/OptionsPages')
+            ->each(function ($filename) {
+                $className = $this->namespacedClassNameFromFilename($filename);
+                (new $className())
+                ->addAction('acf/init', 'register');
+            });
+    }
+
+    private function initFields()
+    {
+        $this
+            ->collectFilesIn('/Fields')
             ->each(function ($filename) {
                 $className = $this->namespacedClassNameFromFilename($filename);
                 (new $className())
