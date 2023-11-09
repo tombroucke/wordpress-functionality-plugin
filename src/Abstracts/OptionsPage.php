@@ -3,9 +3,12 @@
 namespace FunctionalityPlugin\Abstracts;
 
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use FunctionalityPlugin\Concerns\HasHooks;
 
 abstract class OptionsPage
 {
+    use HasHooks;
+    
     protected string $slug = 'options-page';
 
     protected string $title = 'Options';

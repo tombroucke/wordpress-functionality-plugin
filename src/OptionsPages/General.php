@@ -4,14 +4,11 @@ namespace FunctionalityPlugin\OptionsPages;
 
 use FunctionalityPluginSocialMedia as SocialMedia;
 use FunctionalityPlugin\Abstracts\OptionsPage as AbstractsOptionsPage;
-use FunctionalityPlugin\Concerns\HasHooks;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use FunctionalityPlugin\Contracts\OptionsPage;
 
 class General extends AbstractsOptionsPage implements OptionsPage
 {
-    use HasHooks;
-
     protected string $slug = 'functionality-plugin-settings';
 
     protected string $title = 'General Settings';

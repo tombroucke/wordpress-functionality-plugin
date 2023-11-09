@@ -3,13 +3,11 @@
 namespace FunctionalityPlugin\OptionsPages;
 
 use FunctionalityPlugin\Abstracts\OptionsPage as AbstractsOptionsPage;
-use FunctionalityPlugin\Concerns\HasHooks;
 use FunctionalityPlugin\Contracts\OptionsPage;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class {{class_name}} extends AbstractsOptionsPage implements OptionsPage
 {
-    use HasHooks;
 
     protected string $slug = '{{slug}}';
 
