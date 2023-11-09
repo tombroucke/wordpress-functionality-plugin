@@ -2,6 +2,7 @@
 
 namespace FunctionalityPlugin\Shortcodes;
 
+use Illuminate\Support\Str;
 use FunctionalityPlugin\Contracts\Shortcode;
 
 class ContactInformation implements Shortcode
@@ -27,7 +28,7 @@ class ContactInformation implements Shortcode
             ->replace(' ', '')
             ->toString();
 
-        return view('DokDrie::shortcodes.contact-information', [
+        return view('FunctionalityPlugin::shortcodes.contact-information', [
             'property' => $property ?: null,
         ])->toHtml();
     }
