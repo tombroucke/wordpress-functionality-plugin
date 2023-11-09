@@ -50,7 +50,7 @@ class ContactInformation
     }
 
     public function formattedAddress() {
-        return view('DokDrie::contact-information.address', [
+        return view('FunctionalityPlugin::contact-information.address', [
             'company' => $this->company(),
             'street' => $this->street(),
             'streetNumber' => $this->streetNumber(),
@@ -60,20 +60,20 @@ class ContactInformation
     }
 
     public function formattedPhoneEmail() {
-        return view('DokDrie::contact-information.phone-email', [
+        return view('FunctionalityPlugin::contact-information.phone-email', [
             'phone' => $this->phone(),
             'email' => $this->email(),
         ])->toHtml();
     }
 
     public function formattedPhone() {
-        return view('DokDrie::contact-information.phone', [
+        return view('FunctionalityPlugin::contact-information.phone', [
             'phone' => $this->phone(),
         ])->toHtml();
     }
 
     public function formattedEmail() {
-        return view('DokDrie::contact-information.email', [
+        return view('FunctionalityPlugin::contact-information.email', [
             'email' => $this->email(),
         ])->toHtml();
     }
