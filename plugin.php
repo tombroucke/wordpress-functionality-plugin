@@ -8,6 +8,6 @@
  * Author:            Tom Broucke
  * Author URI:        https://tombroucke.be
  * License:           GPL v2 or later
- * Text Domain:       functionality_plugin
+ * Text Domain:       functionality-plugin
  * Domain Path:       /resources/languages
  */
