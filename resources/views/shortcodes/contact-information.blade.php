@@ -1,20 +1,20 @@
 @if(!$property)
-	{!! DokDrieContactInformation::formattedAddress() !!}
-	{!! DokDrieContactInformation::formattedPhoneEmail() !!}
+	{!! FunctionalityPluginContactInformation::formattedAddress() !!}
+	{!! FunctionalityPluginContactInformation::formattedPhoneEmail() !!}
 @else
 	@if($property == 'address')
-		{!! DokDrieContactInformation::formattedAddress() !!}
+		{!! FunctionalityPluginContactInformation::formattedAddress() !!}
 	@endif
-	@if($property == 'phone' && DokDrieContactInformation::phone())
-		{!! DokDrieContactInformation::formattedPhone() !!}
+	@if($property == 'phone' && FunctionalityPluginContactInformation::phone())
+		{!! FunctionalityPluginContactInformation::formattedPhone() !!}
 	@endif
-	@if($property == 'email' && DokDrieContactInformation::email())
-		{!! DokDrieContactInformation::formattedEmail() !!}
+	@if($property == 'email' && FunctionalityPluginContactInformation::email())
+		{!! FunctionalityPluginContactInformation::formattedEmail() !!}
 	@endif
-	@if($property == 'vat_number' && DokDrieContactInformation::vatNumber())
-		{!! DokDrieContactInformation::vatNumber() !!}
+	@if($property == 'vat_number' && FunctionalityPluginContactInformation::vatNumber())
+		{!! FunctionalityPluginContactInformation::vatNumber() !!}
 	@endif
-	@if($property == 'bank_account_number' && DokDrieContactInformation::bankAccountNumber())
-		{!! DokDrieContactInformation::bankAccountNumber() !!}
+	@if($property == 'bank_account_number' && FunctionalityPluginContactInformation::bankAccountNumber())
+		{!! FunctionalityPluginContactInformation::bankAccountNumber() !!}
 	@endif
 @endif
