@@ -1,3 +1,4 @@
+@if($company || $street || $city)
 <p>
 	@if ($company)
 		{!! $company !!}<br>
@@ -13,3 +14,4 @@
 		{!! $city !!}<br>
 	@endif
 </p>
+@endif
