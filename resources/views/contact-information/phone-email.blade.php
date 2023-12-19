@@ -1,10 +1,10 @@
 @if($phone || $email)
-<p>
+<p class="phone-email">
 	@if ($phone)
-		<a href="{{ Str::phoneLink($phone) }}">{{ $phone }}</a><br>
+		<a href="{!! Str::phoneLink($phone) !!}">{!! $phone !!}</a><br>
 	@endif
 	@if ($email)
-		<a href="{{ Str::emailLink($email) }}">{{ $email }}</a>
+		<a href="{!! Str::emailLink($email) !!}">{!! $email !!}</a>
 	@endif
 </p>
 @endif
