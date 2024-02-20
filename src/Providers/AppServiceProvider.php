@@ -3,7 +3,7 @@
 namespace FunctionalityPlugin\Providers;
 
 use Illuminate\Support\Str;
-use Roots\Acorn\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use FunctionalityPlugin\Console\FieldCommand;
 use FunctionalityPlugin\Console\PostTypeCommand;
 use FunctionalityPlugin\Console\TaxonomyCommand;
