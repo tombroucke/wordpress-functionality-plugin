@@ -4,7 +4,7 @@ namespace FunctionalityPlugin\Providers;
 
 use FunctionalityPluginFrontend as Frontend;
 use FunctionalityPluginAdmin as Admin;
-use Roots\Acorn\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class FunctionalityPluginServiceProvider extends ServiceProvider
 {
