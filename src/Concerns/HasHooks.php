@@ -1,6 +1,6 @@
 <?php
 
-namespace FunctionalityPlugin\Concerns;
+namespace AcodSpoor\Concerns;
 
 trait HasHooks
 {
@@ -26,7 +26,7 @@ trait HasHooks
 
     public function removeFilter($filter, $callback, ...$args)
     {
-        remove_filter($filter, $callback, ...$args);
+        remove_filter($filter, [$this, $callback], ...$args);
         return $this;
     }
 
@@ -38,7 +38,7 @@ trait HasHooks
 
     public function removeAction($action, $callback, ...$args)
     {
-        remove_action($action, $callback, ...$args);
+        remove_action($action, [$this, $callback], ...$args);
         return $this;
     }
 }
