@@ -82,55 +82,55 @@ class Labels
     {
         return [
             /* translators: %s: plural taxonomy name */
-            'search_items' => sprintf(__('Search %s', 'projectname-textdomain'), $plural_name),
+            'search_items' => sprintf(__('Search %s', 'functionality-plugin'), $plural_name),
             /* translators: %s: plural taxonomy name */
-            'popular_items' => sprintf(__('Popular %s', 'projectname-textdomain'), $plural_name),
+            'popular_items' => sprintf(__('Popular %s', 'functionality-plugin'), $plural_name),
             /* translators: %s: plural taxonomy name */
-            'all_items' => sprintf(__('All %s', 'projectname-textdomain'), $plural_name),
+            'all_items' => sprintf(__('All %s', 'functionality-plugin'), $plural_name),
             /* translators: %s: singular taxonomy name */
-            'parent_item' => sprintf(__('Parent %s', 'projectname-textdomain'), $singular_name),
+            'parent_item' => sprintf(__('Parent %s', 'functionality-plugin'), $singular_name),
             /* translators: %s: singular taxonomy name */
-            'parent_item_colon' => sprintf(__('Parent %s:', 'projectname-textdomain'), $singular_name),
+            'parent_item_colon' => sprintf(__('Parent %s:', 'functionality-plugin'), $singular_name),
             /* translators: %s: singular taxonomy name */
-            'edit_item' => sprintf(__('Edit %s', 'projectname-textdomain'), $singular_name),
+            'edit_item' => sprintf(__('Edit %s', 'functionality-plugin'), $singular_name),
             /* translators: %s: singular taxonomy name */
-            'view_item' => sprintf(__('View %s', 'projectname-textdomain'), $singular_name),
+            'view_item' => sprintf(__('View %s', 'functionality-plugin'), $singular_name),
             /* translators: %s: singular taxonomy name */
-            'update_item' => sprintf(__('Update %s', 'projectname-textdomain'), $singular_name),
+            'update_item' => sprintf(__('Update %s', 'functionality-plugin'), $singular_name),
             /* translators: %s: singular taxonomy name */
-            'add_new_item' => sprintf(__('Add New %s', 'projectname-textdomain'), $singular_name),
+            'add_new_item' => sprintf(__('Add New %s', 'functionality-plugin'), $singular_name),
             /* translators: %s: singular taxonomy name */
-            'new_item_name' => sprintf(__('New %s Name', 'projectname-textdomain'), $singular_name),
+            'new_item_name' => sprintf(__('New %s Name', 'functionality-plugin'), $singular_name),
             /* translators: %s: plural taxonomy name to lower */
             'separate_items_with_commas' => sprintf(
-                __('Separate %s with commas', 'projectname-textdomain'),
+                __('Separate %s with commas', 'functionality-plugin'),
                 strtolower($plural_name)
             ),
             /* translators: %s: plural taxonomy name to lower */
             'add_or_remove_items' => sprintf(
-                __('Add or remove %s', 'projectname-textdomain'),
+                __('Add or remove %s', 'functionality-plugin'),
                 strtolower($plural_name)
             ),
             /* translators: %s: plural taxonomy name to lower */
             'choose_from_most_used' => sprintf(
-                __('Choose from most used %s', 'projectname-textdomain'),
+                __('Choose from most used %s', 'functionality-plugin'),
                 strtolower($plural_name)
             ),
             /* translators: %s: plural taxonomy name to lower */
-            'not_found' => sprintf(__('No %s found', 'projectname-textdomain'), strtolower($plural_name)),
+            'not_found' => sprintf(__('No %s found', 'functionality-plugin'), strtolower($plural_name)),
             /* translators: %s: plural taxonomy name to lower */
-            'no_terms'  => sprintf(__('No %s', 'projectname-textdomain'), strtolower($plural_name)),
+            'no_terms'  => sprintf(__('No %s', 'functionality-plugin'), strtolower($plural_name)),
             /* translators: %s: plural taxonomy name */
-            'items_list_navigation' => sprintf(__('%s list navigation', 'projectname-textdomain'), $plural_name),
+            'items_list_navigation' => sprintf(__('%s list navigation', 'functionality-plugin'), $plural_name),
             /* translators: %s: plural taxonomy name */
-            'items_list' => sprintf(__('%s list', 'projectname-textdomain'), $plural_name),
+            'items_list' => sprintf(__('%s list', 'functionality-plugin'), $plural_name),
             'most_used' => 'Most Used',
             /* translators: %s: plural taxonomy name */
-            'back_to_items' => sprintf(__('&larr; Back to %s', 'projectname-textdomain'), $plural_name),
+            'back_to_items' => sprintf(__('&larr; Back to %s', 'functionality-plugin'), $plural_name),
             /* translators: %s: singular taxonomy name to lower */
-            'no_item'   => sprintf(__('No %s', 'projectname-textdomain'), strtolower($singular_name)),
+            'no_item'   => sprintf(__('No %s', 'functionality-plugin'), strtolower($singular_name)),
             /* translators: %s: singular taxonomy name to lower */
-            'filter_by' => sprintf(__('Filter by %s', 'projectname-textdomain'), strtolower($singular_name)),
+            'filter_by' => sprintf(__('Filter by %s', 'functionality-plugin'), strtolower($singular_name)),
         ];
     }
 }
