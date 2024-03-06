@@ -39,6 +39,7 @@ class {{class_name}} implements Taxonomy
         ];
 
         $names = [
+            'singular' => $taxonomySingularName,
             'plural' => $taxonomyPluralName,
         ];
 
