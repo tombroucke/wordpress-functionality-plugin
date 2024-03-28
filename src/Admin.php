@@ -8,7 +8,7 @@ class Admin
 {
     use HasHooks;
 
-    public function init()
+    public function runHooks()
     {
         //
     }
