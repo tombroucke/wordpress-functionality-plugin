@@ -2,8 +2,8 @@
 
 namespace FunctionalityPlugin\Providers;
 
-use FunctionalityPluginFrontend as Frontend;
-use FunctionalityPluginAdmin as Admin;
+use FunctionalityPlugin\Frontend;
+use FunctionalityPlugin\Admin;
 use Illuminate\Support\ServiceProvider;
 
 class FunctionalityPluginServiceProvider extends ServiceProvider
@@ -29,7 +29,12 @@ class FunctionalityPluginServiceProvider extends ServiceProvider
     
     public function boot()
     {
-        Frontend::addAction('init', 'init');
-        Admin::addAction('init', 'init');
+        collect([
+            Frontend::class,
+            Admin::class,
+        ])
+            ->each(function ($class) {
+                (new $class())->runHooks();
+            });
     }
 }
