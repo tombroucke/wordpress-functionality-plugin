@@ -8,7 +8,7 @@ class Frontend
 {
     use HasHooks;
 
-    public function init()
+    public function runHooks()
     {
         //
     }
