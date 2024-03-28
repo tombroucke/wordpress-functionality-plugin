@@ -1,6 +1,6 @@
 <?php
 
-namespace AcodSpoor\Concerns;
+namespace FunctionalityPlugin\Concerns;
 
 trait HasHooks
 {
