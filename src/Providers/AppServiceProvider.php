@@ -8,6 +8,7 @@ use FunctionalityPlugin\Console\FieldCommand;
 use FunctionalityPlugin\Console\PostTypeCommand;
 use FunctionalityPlugin\Console\TaxonomyCommand;
 use FunctionalityPlugin\Console\ShortcodeCommand;
+use FunctionalityPlugin\Console\SeedCommand;
 use FunctionalityPlugin\Console\OptionsPageCommand;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             OptionsPageCommand::class,
             FieldCommand::class,
             ShortcodeCommand::class,
+            SeedCommand::class,
         ]);
 
         $this->loadViewsFrom(
