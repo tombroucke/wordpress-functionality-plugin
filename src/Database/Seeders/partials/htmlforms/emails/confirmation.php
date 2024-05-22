@@ -4,7 +4,7 @@
     }
 ?>
 
-Beste [naam],
+Beste [name],
                     
 We hebben je bericht ontvangen. We beantwoorden deze zo spoedig mogelijk.
 
