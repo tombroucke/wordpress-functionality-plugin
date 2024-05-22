@@ -6,7 +6,7 @@
 
 Beste,
 
-[naam] heeft je een bericht gestuurd via de website:
+[name] heeft je een bericht gestuurd via de website:
 
 Naam: [name]
 E-mailadres: [email]
