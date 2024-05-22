@@ -6,16 +6,16 @@
 
 <div class="row g-3">
     <div class="col-md-6">
-        <label for="first_name" class="form-label">Naam <span class="text-danger">*</span></label>
-        <input type="text" name="naam" class="form-control" placeholder="Naam" aria-label="Naam" required="">
+        <label for="name" class="form-label">Naam <span class="text-danger">*</span></label>
+        <input type="text" name="name" class="form-control" placeholder="Naam" aria-label="Naam" required="">
     </div>
     <div class="col-md-6">
         <label for="email" class="form-label">E-mailadres <span class="text-danger">*</span></label>
-        <input type="text" name="email" class="form-control" placeholder="E-mailadres" aria-label="E-mailadres" required="">
+        <input type="email" name="email" class="form-control" placeholder="E-mailadres" aria-label="E-mailadres" required="">
     </div>
     <div class="col-12">
         <label for="message" class="form-label">Bericht <span class="text-danger">*</span></label>
-        <textarea name="bericht" class="form-control" cols="30" rows="10" placeholder="Bericht" aria-label="Bericht"
+        <textarea name="message" class="form-control" cols="30" rows="10" placeholder="Bericht" aria-label="Bericht"
             required=""></textarea>
     </div>
 	 <div class="col-md-12">
