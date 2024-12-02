@@ -65,8 +65,10 @@ class AppServiceProvider extends ServiceProvider
     
     private function loadTextdomain()
     {
-        $muPluginRelPath = dirname(plugin_basename(__FILE__), 3) . '/resources/languages/';
-        load_muplugin_textdomain('functionality-plugin', $muPluginRelPath);
+        add_action('init', function () {
+            $muPluginRelPath = dirname(plugin_basename(__FILE__), 3).'/resources/languages/';
+            load_muplugin_textdomain('functionality-plugin', $muPluginRelPath);
+        }, 0);
     }
     
     private function initPostTypes()
@@ -78,9 +80,11 @@ class AppServiceProvider extends ServiceProvider
             $this
                 ->collectFilesIn("/$registerableClassPath")
                 ->each(function ($filename) {
-                    $className = $this->namespacedClassNameFromFilename($filename);
-                    (new $className())
-                    ->addAction('init', 'register');
+                    add_action('init', function () use ($filename) {
+                        $className = $this->namespacedClassNameFromFilename($filename);
+                        (new $className())
+                        ->register();
+                    });
                 });
         });
     }
@@ -90,9 +94,11 @@ class AppServiceProvider extends ServiceProvider
         $this
             ->collectFilesIn('/OptionsPages')
             ->each(function ($filename) {
-                $className = $this->namespacedClassNameFromFilename($filename);
-                (new $className())
-                ->addAction('acf/init', 'register');
+                add_action('acf/init', function () use ($filename) {
+                    $className = $this->namespacedClassNameFromFilename($filename);
+                    (new $className())
+                    ->register();
+                });
             });
     }
 
@@ -101,9 +107,11 @@ class AppServiceProvider extends ServiceProvider
         $this
             ->collectFilesIn('/Fields')
             ->each(function ($filename) {
-                $className = $this->namespacedClassNameFromFilename($filename);
-                (new $className())
-                ->addAction('acf/init', 'register');
+                add_action('acf/init', function () use ($filename) {
+                    $className = $this->namespacedClassNameFromFilename($filename);
+                    (new $className())
+                    ->register();
+                });
             });
     }
 
