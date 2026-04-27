@@ -10,8 +10,6 @@ class ContactInformation
 
     public function __construct()
     {
-        add_filter('the_content', [$this, 'replaceVariables']);
-
         $this->fields = collect([
             'company' => __('Company', 'functionality-plugin'),
             'street' => __('Street', 'functionality-plugin'),
@@ -30,19 +28,6 @@ class ContactInformation
         return $this->fields->mapWithKeys(function ($label, $key) {
             return ['contact_information_'.$key => $label];
         });
-    }
-
-    public function replaceVariables($content)
-    {
-        $this->fields->each(function ($label, $key) use (&$content) {
-            $content = str_replace(
-                '{{contact_information_'.$key.'}}',
-                get_field('contact_information_'.$key, 'option') ?? '',
-                $content,
-            );
-        });
-
-        return $content;
     }
 
     public function branches(): array
