@@ -2,10 +2,10 @@
 
 namespace FunctionalityPlugin\OptionsPages;
 
-use FunctionalityPluginSocialMedia as SocialMedia;
 use FunctionalityPlugin\Abstracts\OptionsPage as AbstractsOptionsPage;
-use StoutLogic\AcfBuilder\FieldsBuilder;
 use FunctionalityPlugin\Contracts\OptionsPage;
+use FunctionalityPluginSocialMedia as SocialMedia;
+use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class General extends AbstractsOptionsPage implements OptionsPage
 {
@@ -21,12 +21,13 @@ class General extends AbstractsOptionsPage implements OptionsPage
         $this->menuTitle = __('General Settings', 'functionality-plugin');
     }
 
-    protected function fields(FieldsBuilder $fieldsBuilder) : FieldsBuilder
+    protected function fields(FieldsBuilder $fieldsBuilder): FieldsBuilder
     {
         $fieldsBuilder = $this->addContactInformation($fieldsBuilder);
         $fieldsBuilder = $this->addSocialMedia($fieldsBuilder);
         $fieldsBuilder = $this->addOpeningHours($fieldsBuilder);
         $fieldsBuilder = $this->addNewsletter($fieldsBuilder);
+
         return $fieldsBuilder;
     }
 
@@ -41,20 +42,21 @@ class General extends AbstractsOptionsPage implements OptionsPage
 
         $channels->each(function ($channel, $key) use ($settings) {
             $settings
-                ->addUrl('social_media_' . $key, [
+                ->addUrl('social_media_'.$key, [
                     'label' => $channel['label'],
                 ]);
         });
+
         return $settings;
     }
 
-    private function addContactInformation(FieldsBuilder $settings) : FieldsBuilder
+    private function addContactInformation(FieldsBuilder $settings): FieldsBuilder
     {
         $settings
             ->addTab('contact_information', [
                 'label' => __('Contact information', 'functionality-plugin'),
             ]);
-        
+
         $fields = collect([
             'company' => __('Company', 'functionality-plugin'),
             'street' => __('Street', 'functionality-plugin'),
@@ -69,14 +71,15 @@ class General extends AbstractsOptionsPage implements OptionsPage
 
         $fields->each(function ($label, $key) use ($settings) {
             $settings
-                ->addText('contact_information_' . $key, [
+                ->addText('contact_information_'.$key, [
                     'label' => $label,
                 ]);
         });
+
         return $settings;
     }
 
-    private function addOpeningHours(FieldsBuilder $settings) : FieldsBuilder
+    private function addOpeningHours(FieldsBuilder $settings): FieldsBuilder
     {
         $settings
             ->addTab('opening_hours', [
@@ -85,27 +88,28 @@ class General extends AbstractsOptionsPage implements OptionsPage
         $days = app()->make('functionality_plugin.locale')->weekDays();
         $days->each(function ($day, $key) use ($settings) {
             $settings
-                ->addRepeater('opening_hours_' . $key, [
+                ->addRepeater('opening_hours_'.$key, [
                     'label' => ucfirst($day),
                 ])
-                    ->addTimePicker('from', [
-                        'label' => __('From', 'functionality-plugin'),
-                        'display_format' => 'H:i',
-                        'return_format' => 'H:i',
-                        'default_value' => '09:00',
-                    ])
-                    ->addTimePicker('to', [
-                        'label' => __('To', 'functionality-plugin'),
-                        'display_format' => 'H:i',
-                        'return_format' => 'H:i',
-                        'default_value' => '17:00',
-                    ])
+                ->addTimePicker('from', [
+                    'label' => __('From', 'functionality-plugin'),
+                    'display_format' => 'H:i',
+                    'return_format' => 'H:i',
+                    'default_value' => '09:00',
+                ])
+                ->addTimePicker('to', [
+                    'label' => __('To', 'functionality-plugin'),
+                    'display_format' => 'H:i',
+                    'return_format' => 'H:i',
+                    'default_value' => '17:00',
+                ])
                 ->endRepeater();
         });
+
         return $settings;
     }
 
-    private function addNewsletter(FieldsBuilder $settings) : FieldsBuilder
+    private function addNewsletter(FieldsBuilder $settings): FieldsBuilder
     {
         $settings
             ->addTab('newsletter', [
@@ -117,6 +121,7 @@ class General extends AbstractsOptionsPage implements OptionsPage
                 'rows' => 40,
                 'instructions' => __('Enter the signup form code. You can use the [newsletter-signup-form] shortcode to display the signup form.', 'functionality-plugin'),
             ]);
+
         return $settings;
     }
 }

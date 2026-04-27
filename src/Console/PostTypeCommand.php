@@ -3,7 +3,6 @@
 namespace FunctionalityPlugin\Console;
 
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
 use Roots\Acorn\Console\Commands\GeneratorCommand;
 
 class PostTypeCommand extends GeneratorCommand
@@ -36,9 +35,9 @@ class PostTypeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return dirname(__FILE__) . '/stubs/post_type.stub';
+        return dirname(__FILE__).'/stubs/post_type.stub';
     }
-    
+
     /**
      * Replace the class name for the given stub.
      *
@@ -49,6 +48,7 @@ class PostTypeCommand extends GeneratorCommand
     protected function replaceClass($stub, $name)
     {
         $nameInput = $this->getNameInput();
+
         return Str::of($stub)
             ->replace('{{class_name}}', Str::studly($nameInput))
             ->replace('{{post_type}}', Str::snake($nameInput))
@@ -57,6 +57,7 @@ class PostTypeCommand extends GeneratorCommand
             ->replace('{{plural_label}}', Str::of($nameInput)->plural()->snake()->replace('_', ' ')->ucFirst())
             ->__toString();
     }
+
     /**
      * Get the destination class path.
      *
@@ -65,7 +66,8 @@ class PostTypeCommand extends GeneratorCommand
      */
     protected function getPath($name)
     {
-        $fileName = Str::studly($this->argument('name')) . '.php';
-        return app('functionality_plugin.base_path') . '/PostTypes/' . $fileName;
+        $fileName = Str::studly($this->argument('name')).'.php';
+
+        return app('functionality_plugin.base_path').'/PostTypes/'.$fileName;
     }
 }

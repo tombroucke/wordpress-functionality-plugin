@@ -35,9 +35,9 @@ class FieldCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return dirname(__FILE__) . '/stubs/field.stub';
+        return dirname(__FILE__).'/stubs/field.stub';
     }
-    
+
     /**
      * Replace the class name for the given stub.
      *
@@ -48,12 +48,14 @@ class FieldCommand extends GeneratorCommand
     protected function replaceClass($stub, $name)
     {
         $nameInput = $this->getNameInput();
+
         return Str::of($stub)
             ->replace('{{class_name}}', Str::studly($nameInput))
             ->replace('{{slug}}', Str::of($nameInput)->slug('-'))
             ->replace('{{name}}', Str::of($nameInput)->snake()->replace('_', ' ')->ucFirst())
             ->__toString();
     }
+
     /**
      * Get the destination class path.
      *
@@ -62,7 +64,8 @@ class FieldCommand extends GeneratorCommand
      */
     protected function getPath($name)
     {
-        $fileName = Str::studly($this->argument('name')) . '.php';
-        return app('functionality_plugin.base_path') . '/Fields/' . $fileName;
+        $fileName = Str::studly($this->argument('name')).'.php';
+
+        return app('functionality_plugin.base_path').'/Fields/'.$fileName;
     }
 }

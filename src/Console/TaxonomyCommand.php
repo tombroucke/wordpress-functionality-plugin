@@ -2,6 +2,7 @@
 
 namespace FunctionalityPlugin\Console;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 use Roots\Acorn\Console\Commands\GeneratorCommand;
 
@@ -35,7 +36,7 @@ class TaxonomyCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return dirname(__FILE__) . '/stubs/taxonomy.stub';
+        return dirname(__FILE__).'/stubs/taxonomy.stub';
     }
 
     /**
@@ -43,7 +44,7 @@ class TaxonomyCommand extends GeneratorCommand
      *
      * @return bool|null
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public function handle()
     {
@@ -54,6 +55,7 @@ class TaxonomyCommand extends GeneratorCommand
                 $postTypeSlug,
                 $this->argument('post_type')
             ));
+
             return false;
         }
         parent::handle();
@@ -70,6 +72,7 @@ class TaxonomyCommand extends GeneratorCommand
     {
         $nameInput = $this->getNameInput();
         $postType = $this->argument('post_type');
+
         return Str::of($stub)
             ->replace('{{post_type_class}}', Str::studly($postType))
             ->replace('{{class_name}}', Str::studly($nameInput))
@@ -81,8 +84,6 @@ class TaxonomyCommand extends GeneratorCommand
             ->__toString();
     }
 
-    
-
     /**
      * Get the destination class path.
      *
@@ -92,7 +93,8 @@ class TaxonomyCommand extends GeneratorCommand
     protected function getPath($name)
     {
         $postType = Str::studly($this->argument('post_type'));
-        $fileName = Str::studly($this->argument('name')) . '.php';
-        return app('functionality_plugin.base_path') . '/Taxonomies/' . $postType . '/' . $fileName;
+        $fileName = Str::studly($this->argument('name')).'.php';
+
+        return app('functionality_plugin.base_path').'/Taxonomies/'.$postType.'/'.$fileName;
     }
 }

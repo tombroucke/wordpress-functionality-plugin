@@ -2,21 +2,19 @@
 
 namespace FunctionalityPlugin\Shortcodes;
 
-use Illuminate\Support\Str;
 use FunctionalityPlugin\Contracts\Shortcode;
+use Illuminate\Support\Str;
 
 class ContactInformation implements Shortcode
 {
-
     const SHORTCODE_NAME = 'contact-information';
-    
+
     /**
      * Shortcode callback
      *
-     * @param array<string, mixed>|string $atts The shortcode attributes.
-     * @return string
+     * @param  array<string, mixed>|string  $atts  The shortcode attributes.
      */
-    public function callback(array|string $atts = []) : string
+    public function callback(array|string $atts = []): string
     {
         $a = shortcode_atts(
             [

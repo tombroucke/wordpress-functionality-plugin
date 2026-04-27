@@ -34,7 +34,7 @@ class HtmlFormsSeeder extends Seeder
                             'subject' => 'Nieuw bericht van [naam]',
                             'message' => $this->getPartial('emails/notification.php'),
                             'content_type' => 'text/plain',
-                            'headers' => 'Reply-To: [naam] <[email]>'
+                            'headers' => 'Reply-To: [naam] <[email]>',
                         ],
                         [
                             'type' => 'email',
@@ -43,15 +43,15 @@ class HtmlFormsSeeder extends Seeder
                             'subject' => 'Verzendbevestiging',
                             'message' => $this->getPartial('emails/confirmation.php'),
                             'content_type' => 'text/plain',
-                            'headers' => 'Reply-To: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>'
-                        ]
-                    ]
+                            'headers' => 'Reply-To: '.get_bloginfo('name').' <'.get_option('admin_email').'>',
+                        ],
+                    ],
                 ],
                 'hf_message_success' => 'Bedankt! We nemen contact met je op.',
                 'hf_message_invalid_email' => 'Dit e-mailadres lijkt niet te kloppen.',
                 'hf_message_required_field_missing' => 'Vul de vereiste velden in.',
                 'hf_message_error' => 'Er is een fout opgetreden.',
-            ]
+            ],
         ]);
 
         if (is_wp_error($htmlFormsId)) {
@@ -64,7 +64,8 @@ class HtmlFormsSeeder extends Seeder
     private function getPartial($partial)
     {
         ob_start();
-        include('partials/htmlforms/' . ltrim($partial, '/'));      
+        include 'partials/htmlforms/'.ltrim($partial, '/');
+
         return ob_get_clean();
     }
 }

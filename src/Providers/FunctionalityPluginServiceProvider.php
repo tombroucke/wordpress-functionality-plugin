@@ -2,8 +2,10 @@
 
 namespace FunctionalityPlugin\Providers;
 
-use FunctionalityPlugin\Frontend;
 use FunctionalityPlugin\Admin;
+use FunctionalityPlugin\ContactInformation;
+use FunctionalityPlugin\Frontend;
+use FunctionalityPlugin\SocialMedia;
 use Illuminate\Support\ServiceProvider;
 
 class FunctionalityPluginServiceProvider extends ServiceProvider
@@ -11,22 +13,22 @@ class FunctionalityPluginServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('functionality_plugin.frontend', function () {
-            return new \FunctionalityPlugin\Frontend();
+            return new Frontend;
         });
 
         $this->app->singleton('functionality_plugin.admin', function () {
-            return new \FunctionalityPlugin\Admin();
+            return new Admin;
         });
 
         $this->app->singleton('functionality_plugin.contact_information', function () {
-            return new \FunctionalityPlugin\ContactInformation();
+            return new ContactInformation;
         });
 
         $this->app->singleton('functionality_plugin.social_media', function () {
-            return new \FunctionalityPlugin\SocialMedia();
+            return new SocialMedia;
         });
     }
-    
+
     public function boot()
     {
         collect([
@@ -34,7 +36,7 @@ class FunctionalityPluginServiceProvider extends ServiceProvider
             Admin::class,
         ])
             ->each(function ($class) {
-                (new $class())->runHooks();
+                (new $class)->runHooks();
             });
     }
 }

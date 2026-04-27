@@ -4,5 +4,5 @@ namespace FunctionalityPlugin\Contracts;
 
 interface OptionsPage
 {
-    public function register() : void;
+    public function register(): void;
 }

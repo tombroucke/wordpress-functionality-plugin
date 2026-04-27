@@ -6,7 +6,6 @@ use Roots\Acorn\Console\Commands\Command;
 
 class SeedCommand extends Command
 {
-
     /**
      * The name and signature of the console command.
      *

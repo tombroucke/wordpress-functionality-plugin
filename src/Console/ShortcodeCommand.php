@@ -3,7 +3,6 @@
 namespace FunctionalityPlugin\Console;
 
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
 use Roots\Acorn\Console\Commands\GeneratorCommand;
 
 class ShortcodeCommand extends GeneratorCommand
@@ -36,14 +35,14 @@ class ShortcodeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return dirname(__FILE__) . '/stubs/shortcode.stub';
+        return dirname(__FILE__).'/stubs/shortcode.stub';
     }
 
     protected function getViewStub()
     {
-        return dirname(__FILE__) . '/stubs/views/shortcode.stub';
+        return dirname(__FILE__).'/stubs/views/shortcode.stub';
     }
-    
+
     /**
      * Replace the class name for the given stub.
      *
@@ -54,6 +53,7 @@ class ShortcodeCommand extends GeneratorCommand
     protected function replaceClass($stub, $name)
     {
         $nameInput = $this->getNameInput();
+
         return Str::of($stub)
             ->replace('{{class_name}}', Str::studly($nameInput))
             ->replace('{{shortcode}}', $this->getShortcodeName())
@@ -63,8 +63,8 @@ class ShortcodeCommand extends GeneratorCommand
     public function handle()
     {
         $this->info(sprintf('Generating shortcode [%s]', $this->getShortcodeName()));
-        $viewPath = view()->getFinder()->getHints()['FunctionalityPlugin'][0] . '/shortcodes/';
-        $destination = $viewPath . $this->getShortcodeName() . '.blade.php';
+        $viewPath = view()->getFinder()->getHints()['FunctionalityPlugin'][0].'/shortcodes/';
+        $destination = $viewPath.$this->getShortcodeName().'.blade.php';
         $this->files->put($destination, $this->files->get($this->getViewStub()));
         parent::handle();
     }
@@ -74,7 +74,8 @@ class ShortcodeCommand extends GeneratorCommand
      *
      * @return void
      */
-    private function getShortcodeName() {
+    private function getShortcodeName()
+    {
         return Str::of($this->getNameInput())->snake()->replace('_', '-');
     }
 
@@ -86,7 +87,8 @@ class ShortcodeCommand extends GeneratorCommand
      */
     protected function getPath($name)
     {
-        $fileName = Str::studly($this->argument('name')) . '.php';
-        return app('functionality_plugin.base_path') . '/Shortcodes/' . $fileName;
+        $fileName = Str::studly($this->argument('name')).'.php';
+
+        return app('functionality_plugin.base_path').'/Shortcodes/'.$fileName;
     }
 }

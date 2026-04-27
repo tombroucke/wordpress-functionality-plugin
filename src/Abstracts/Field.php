@@ -9,9 +9,9 @@ abstract class Field
 {
     use HasHooks;
 
-    public function register() : void
+    public function register(): void
     {
-        if (!function_exists('acf_add_local_field_group')) {
+        if (! function_exists('acf_add_local_field_group')) {
             throw new \Exception('ACF is not installed');
         }
 
@@ -19,5 +19,5 @@ abstract class Field
         acf_add_local_field_group($fieldsbuilder->build());
     }
 
-    abstract protected function fields() : FieldsBuilder;
+    abstract protected function fields(): FieldsBuilder;
 }

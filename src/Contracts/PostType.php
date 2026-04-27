@@ -4,5 +4,5 @@ namespace FunctionalityPlugin\Contracts;
 
 interface PostType
 {
-    public function register() : void;
+    public function register(): void;
 }

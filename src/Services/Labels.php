@@ -6,12 +6,8 @@ class Labels
 {
     /**
      * Get the labels for a post type
-     *
-     * @param string $singular
-     * @param string $plural
-     * @return array
      */
-    public static function postType(string $singular, string $plural) : array
+    public static function postType(string $singular, string $plural): array
     {
         return [
             'add_new' => __('Add New', 'functionality-plugin'),
@@ -73,12 +69,8 @@ class Labels
 
     /**
      * Get the labels for a taxonomy
-     *
-     * @param string $singular_name
-     * @param string $plural_name
-     * @return array
      */
-    public static function taxonomy(string $singular_name, string $plural_name) : array
+    public static function taxonomy(string $singular_name, string $plural_name): array
     {
         return [
             /* translators: %s: plural taxonomy name */
@@ -119,7 +111,7 @@ class Labels
             /* translators: %s: plural taxonomy name to lower */
             'not_found' => sprintf(__('No %s found', 'functionality-plugin'), strtolower($plural_name)),
             /* translators: %s: plural taxonomy name to lower */
-            'no_terms'  => sprintf(__('No %s', 'functionality-plugin'), strtolower($plural_name)),
+            'no_terms' => sprintf(__('No %s', 'functionality-plugin'), strtolower($plural_name)),
             /* translators: %s: plural taxonomy name */
             'items_list_navigation' => sprintf(__('%s list navigation', 'functionality-plugin'), $plural_name),
             /* translators: %s: plural taxonomy name */
@@ -128,7 +120,7 @@ class Labels
             /* translators: %s: plural taxonomy name */
             'back_to_items' => sprintf(__('&larr; Back to %s', 'functionality-plugin'), $plural_name),
             /* translators: %s: singular taxonomy name to lower */
-            'no_item'   => sprintf(__('No %s', 'functionality-plugin'), strtolower($singular_name)),
+            'no_item' => sprintf(__('No %s', 'functionality-plugin'), strtolower($singular_name)),
             /* translators: %s: singular taxonomy name to lower */
             'filter_by' => sprintf(__('Filter by %s', 'functionality-plugin'), strtolower($singular_name)),
         ];

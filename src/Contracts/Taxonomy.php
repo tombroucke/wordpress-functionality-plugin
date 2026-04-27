@@ -4,5 +4,5 @@ namespace FunctionalityPlugin\Contracts;
 
 interface Taxonomy
 {
-    public function register() : void;
+    public function register(): void;
 }

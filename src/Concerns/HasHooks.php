@@ -17,28 +17,33 @@ trait HasHooks
 
         if (in_array($callback, $specialFilters)) {
             add_filter($filter, $callback, ...$args);
+
             return $this;
         }
 
         add_filter($filter, [$this, $callback], ...$args);
+
         return $this;
     }
 
     public function removeFilter($filter, $callback, ...$args)
     {
         remove_filter($filter, [$this, $callback], ...$args);
+
         return $this;
     }
 
     public function addAction($action, $callback, ...$args)
     {
         add_action($action, [$this, $callback], ...$args);
+
         return $this;
     }
 
     public function removeAction($action, $callback, ...$args)
     {
         remove_action($action, [$this, $callback], ...$args);
+
         return $this;
     }
 }

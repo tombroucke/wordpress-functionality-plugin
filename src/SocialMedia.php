@@ -13,52 +13,53 @@ class SocialMedia
         $this->channels = collect([
             'facebook' => [
                 'label' => __('Facebook', 'functionality-plugin'),
-                'icon' => 'facebook'
+                'icon' => 'facebook',
             ],
             'instagram' => [
                 'label' => __('Instagram', 'functionality-plugin'),
-                'icon' => 'instagram'
+                'icon' => 'instagram',
             ],
             'linkedin' => [
                 'label' => __('LinkedIn', 'functionality-plugin'),
-                'icon' => 'linkedin'
+                'icon' => 'linkedin',
             ],
             'x' => [
                 'label' => __('X', 'functionality-plugin'),
-                'icon' => 'x-twitter'
+                'icon' => 'x-twitter',
             ],
             'youtube' => [
                 'label' => __('YouTube', 'functionality-plugin'),
-                'icon' => 'youtube'
+                'icon' => 'youtube',
             ],
             'vimeo' => [
                 'label' => __('Vimeo', 'functionality-plugin'),
-                'icon' => 'vimeo'
+                'icon' => 'vimeo',
             ],
             'tiktok' => [
                 'label' => __('TikTok', 'functionality-plugin'),
-                'icon' => 'tiktok'
+                'icon' => 'tiktok',
             ],
             'pinterest' => [
                 'label' => __('Pinterest', 'functionality-plugin'),
-                'icon' => 'pinterest'
+                'icon' => 'pinterest',
             ],
             'tripadvisor' => [
                 'label' => __('Tripadvisor', 'functionality-plugin'),
-                'icon' => 'tripadvisor'
+                'icon' => 'tripadvisor',
             ],
         ]);
     }
 
-    public function allChannels() : Collection
+    public function allChannels(): Collection
     {
         return $this->channels->map(function ($channel, $key) {
-            $channel['link'] = get_field('social_media_' . $key, 'option');
+            $channel['link'] = get_field('social_media_'.$key, 'option');
+
             return $channel;
         });
     }
-    
-    public function channels() : Collection
+
+    public function channels(): Collection
     {
         return $this->allChannels()
             ->filter(function ($channel) {
