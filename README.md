@@ -14,7 +14,6 @@
 5. Add to root `composer.json`:
 
    Also replace
-
    - `FunctionalityPlugin` with WebsiteName
    - `functionality-plugin` with website-name
 
@@ -22,7 +21,6 @@
    "extra": {
    	"acorn": {
    		"providers": [
-   			"FunctionalityPlugin\\Providers\\AppServiceProvider",
    			"FunctionalityPlugin\\Providers\\FunctionalityPluginServiceProvider"
    		],
    		"aliases": {
@@ -68,7 +66,7 @@ Then run this script
 git clone git@github.com:tombroucke/wordpress-functionality-plugin.git web/app/mu-plugins/{{website-name}}
 rm -rf web/app/mu-plugins/{{website-name}}/.git
 mv web/app/mu-plugins/{{website-name}}/src/Providers/FunctionalityPluginServiceProvider.php web/app/mu-plugins/{{website-name}}/src/Providers/{{WebsiteName}}ServiceProvider.php
-composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Providers\\AppServiceProvider", "{{WebsiteName}}\\Providers\\{{WebsiteName}}ServiceProvider"]'
+composer config --json --merge extra.acorn.providers '["{{WebsiteName}}\\Providers\\{{WebsiteName}}ServiceProvider"]'
 composer config --json --merge extra.acorn.aliases '{"{{WebsiteName}}ContactInformation": "{{WebsiteName}}\\Facades\\ContactInformation", "{{WebsiteName}}SocialMedia": "{{WebsiteName}}\\Facades\\SocialMedia"}'
 
 
@@ -86,13 +84,6 @@ By default, this plugin provides a "General" options page, with company info, so
 It provides a shortcode + view for the opening hours `[opening-hours]` and the newsletter signup form `[newsletter-signup-form]`.
 
 ### Contact information
-
-To fetch contact information, you can use the Facade `{{WebsiteName}}ContactInformation`.
-
-```blade
-{!! {{WebsiteName}}ContactInformation::formattedAddress() !!}
-{!! {{WebsiteName}}ContactInformation::formattedPhoneEmail() !!}
-```
 
 You could also use the `[contact-information]` shortcode or `@include('{{WebsiteName}}::shortcodes.contact-information')`
 

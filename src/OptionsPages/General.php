@@ -4,7 +4,8 @@ namespace FunctionalityPlugin\OptionsPages;
 
 use FunctionalityPlugin\Abstracts\OptionsPage as AbstractsOptionsPage;
 use FunctionalityPlugin\Contracts\OptionsPage;
-use FunctionalityPluginSocialMedia as SocialMedia;
+use FunctionalityPlugin\Facades\ContactInformation;
+use FunctionalityPlugin\Facades\SocialMedia;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class General extends AbstractsOptionsPage implements OptionsPage
@@ -57,24 +58,26 @@ class General extends AbstractsOptionsPage implements OptionsPage
                 'label' => __('Contact information', 'functionality-plugin'),
             ]);
 
-        $fields = collect([
-            'company' => __('Company', 'functionality-plugin'),
-            'street' => __('Street', 'functionality-plugin'),
-            'street_number' => __('Number', 'functionality-plugin'),
-            'postcode' => __('Postcode', 'functionality-plugin'),
-            'city' => __('City', 'functionality-plugin'),
-            'country' => __('Country', 'functionality-plugin'),
-            'phone' => __('Phone', 'functionality-plugin'),
-            'email' => __('Email', 'functionality-plugin'),
-            'vat_number' => __('VAT number', 'functionality-plugin'),
-        ]);
-
-        $fields->each(function ($label, $key) use ($settings) {
+        ContactInformation::allFields()->each(function ($label, $key) use ($settings) {
             $settings
-                ->addText('contact_information_'.$key, [
+                ->addText($key, [
                     'label' => $label,
+                    'instructions' => sprintf(__('[contact-information property="%s"]', 'functionality-plugin'), str_replace('contact_information_', '', $key)),
                 ]);
         });
+
+        $settings = $settings->addRepeater('contact_information_branches', [
+            'label' => __('Branches', 'functionality-plugin'),
+            'layout' => 'row',
+        ]);
+        ContactInformation::allFields()->each(function ($label, $key) use ($settings) {
+            $settings
+                ->addText($key, [
+                    'label' => $label,
+                    'instructions' => sprintf(__('[contact-information property="%s" branch="0"]', 'functionality-plugin'), str_replace('contact_information_', '', $key)),
+                ]);
+        });
+        $settings = $settings->endRepeater();
 
         return $settings;
     }

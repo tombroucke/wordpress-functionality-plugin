@@ -2,83 +2,65 @@
 
 namespace FunctionalityPlugin;
 
+use Illuminate\Support\Collection;
+
 class ContactInformation
 {
-    public function company(): ?string
+    private Collection $fields;
+
+    public function __construct()
     {
-        return get_field('contact_information_company', 'option');
+        add_filter('the_content', [$this, 'replaceVariables']);
+
+        $this->fields = collect([
+            'company' => __('Company', 'functionality-plugin'),
+            'street' => __('Street', 'functionality-plugin'),
+            'street_number' => __('Number', 'functionality-plugin'),
+            'postcode' => __('Postcode', 'functionality-plugin'),
+            'city' => __('City', 'functionality-plugin'),
+            'country' => __('Country', 'functionality-plugin'),
+            'phone' => __('Phone', 'functionality-plugin'),
+            'email' => __('Email', 'functionality-plugin'),
+            'vat_number' => __('VAT number', 'functionality-plugin'),
+        ]);
     }
 
-    public function street(): ?string
+    public function allFields(): Collection
     {
-        return get_field('contact_information_street', 'option');
+        return $this->fields->mapWithKeys(function ($label, $key) {
+            return ['contact_information_'.$key => $label];
+        });
     }
 
-    public function streetNumber(): ?string
+    public function replaceVariables($content)
     {
-        return get_field('contact_information_street_number', 'option');
+        $this->fields->each(function ($label, $key) use (&$content) {
+            $content = str_replace(
+                '{{contact_information_'.$key.'}}',
+                get_field('contact_information_'.$key, 'option') ?? '',
+                $content,
+            );
+        });
+
+        return $content;
     }
 
-    public function postcode(): ?string
+    public function branches(): array
     {
-        return get_field('contact_information_postcode', 'option');
-    }
+        $return = [
+            'main' => __('Main branch', 'functionality-plugin'),
+        ];
 
-    public function city(): ?string
-    {
-        return get_field('contact_information_city', 'option');
-    }
+        $branches = get_field('contact_information_branches', 'option');
 
-    public function phone(): ?string
-    {
-        return get_field('contact_information_phone', 'option');
-    }
+        if (! $branches) {
+            return $return;
+        }
 
-    public function email(): ?string
-    {
-        return get_field('contact_information_email', 'option');
-    }
+        foreach ($branches as $key => $branch) {
+            $return['branch_'.$key] = $branch['contact_information_company'] ?? __('Branch', 'functionality-plugin').' '.($key + 1);
+        }
 
-    public function vatNumber(): ?string
-    {
-        return get_field('contact_information_vat_number', 'option');
-    }
-
-    public function bankAccountNumber(): ?string
-    {
-        return get_field('contact_information_bank_account_number', 'option');
-    }
-
-    public function formattedAddress()
-    {
-        return view('FunctionalityPlugin::contact-information.address', [
-            'company' => $this->company(),
-            'street' => $this->street(),
-            'streetNumber' => $this->streetNumber(),
-            'postcode' => $this->postcode(),
-            'city' => $this->city(),
-        ])->toHtml();
-    }
-
-    public function formattedPhoneEmail()
-    {
-        return view('FunctionalityPlugin::contact-information.phone-email', [
-            'phone' => $this->phone(),
-            'email' => $this->email(),
-        ])->toHtml();
-    }
-
-    public function formattedPhone()
-    {
-        return view('FunctionalityPlugin::contact-information.phone', [
-            'phone' => $this->phone(),
-        ])->toHtml();
-    }
-
-    public function formattedEmail()
-    {
-        return view('FunctionalityPlugin::contact-information.email', [
-            'email' => $this->email(),
-        ])->toHtml();
+        return $return;
     }
 }

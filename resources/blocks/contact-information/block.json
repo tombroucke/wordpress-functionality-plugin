@@ -1,0 +1,14 @@
+{
+  "name": "acf/contact-information",
+  "title": "Contact Information",
+  "description": "A custom contact information block that uses ACF fields.",
+  "category": "formatting",
+  "icon": "location",
+  "keywords": ["contact", "information"],
+  "acf": {
+    "mode": "preview"
+  },
+  "supports": {
+    "anchor": true
+  }
+}

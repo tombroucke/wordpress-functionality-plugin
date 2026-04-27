@@ -19,6 +19,7 @@ class ContactInformation implements Shortcode
         $a = shortcode_atts(
             [
                 'property' => '',
+                'branch' => 'main',
             ],
             $atts
         );
@@ -26,8 +27,23 @@ class ContactInformation implements Shortcode
             ->replace(' ', '')
             ->toString();
 
-        return view('FunctionalityPlugin::shortcodes.contact-information', [
-            'property' => $property ?: null,
-        ])->toHtml();
+        $branchKey = $a['branch'];
+
+        if ($branchKey === 'main') {
+            return get_field("contact_information_{$property}", 'option') ?? '';
+        }
+
+        $branches = get_field('contact_information_branches', 'option');
+        if (! $branches) {
+            return '';
+        }
+
+        $branch = $branches[$branchKey] ?? null;
+        if (! $branch) {
+            return '';
+        }
+
+        return $branch["contact_information_{$property}"] ?? '';
+
     }
 }
